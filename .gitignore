@@ -1,0 +1,32 @@
+# macOS system files
+.DS_Store
+
+# Node.js dependencies
+Front/node_modules/
+npm-debug.log
+
+# Build outputs
+dist/
+build/
+Front/ios/Pods/
+Front/android/.gradle/
+Front/android/app/build/
+Front/android/.idea/
+Front/android/local.properties
+
+# Expo and React Native specific
+*.log
+*.lock
+
+# TypeScript and Jest
+*.tsbuildinfo
+coverage/
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.swp
+
+# Misc
+.env
+
