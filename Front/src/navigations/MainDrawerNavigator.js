@@ -4,10 +4,7 @@ import DashBoardPage from '../pages/Monitoring/DashboardPage';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import SOSCallPage from "../pages/Monitoring/SOSCallPage";
-<<<<<<< Updated upstream
-=======
 import EnterDangerZone from "../pages/Monitoring/EnterDangerZone";
->>>>>>> Stashed changes
 
 const Drawer = createDrawerNavigator();
 
@@ -31,11 +28,9 @@ export default function MainDrawerNavigator() {
         >
             <Drawer.Screen name="Dashboard" component={DashBoardPage} />
             <Drawer.Screen name="SOSCall" component={SOSCallPage} />
-<<<<<<< Updated upstream
-
-=======
+            
+            {/* 위험 구역 출입 관리(EnterDangerZone) 추가 */}
             <Drawer.Screen name="EnterDangerZone" component={EnterDangerZone} />
->>>>>>> Stashed changes
         </Drawer.Navigator>
     );
 }
