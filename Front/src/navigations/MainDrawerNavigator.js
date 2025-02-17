@@ -4,6 +4,8 @@ import DashBoardPage from '../pages/Monitoring/DashboardPage';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import SOSCallPage from "../pages/Monitoring/SOSCallPage";
+import MeterReaderListPage from "../pages/SystemManage/MeterReaderListPage";
+import ElderlyListPage from "../pages/SystemManage/ElderlyListPage";
 
 const Drawer = createDrawerNavigator();
 
@@ -25,8 +27,13 @@ export default function MainDrawerNavigator() {
             }}
             drawerContent={(props) => <Sidebar {...props} isManager={DUMMY_USER_INFO.isManager} />} // 커스텀 사이드바 추가
         >
+
             <Drawer.Screen name="Dashboard" component={DashBoardPage} />
             <Drawer.Screen name="SOSCall" component={SOSCallPage} />
+
+            <Drawer.Screen name="MeterReaderList" component={MeterReaderListPage} />
+            <Drawer.Screen name="ElderlyList" component={ElderlyListPage} />
+
 
         </Drawer.Navigator>
     );

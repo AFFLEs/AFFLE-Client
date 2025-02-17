@@ -1,4 +1,6 @@
 // 메뉴 데이터 정의
+import ElderlyListPage from "../pages/SystemManage/ElderlyListPage";
+
 const MainMenuData = [
   {
     title: '모니터링',
@@ -34,10 +36,11 @@ const MainMenuData = [
     ],
   },
   {
-    title: '검침원 관리',
+    title: '시스템 관리',
     subItems: [
-      { title: '검침원 목록 상세 조회', routeName: 'MeterReaderList' },
-      { title: '검침원 등록 및 삭제', routeName: 'ManageMeterReader' },
+      { title: '검침원 목록 관리', routeName: 'MeterReaderList' },
+      { title: '노인 목록 관리', routeName: 'ElderlyList' },
+      { title: '배정 관리', routeName: 'ManageAnnouncement' },
       { title: '공지사항 관리', routeName: 'ManageAnnouncement' },
     ],
   },
