@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
-import styles from "../../styles/Monitoring/EnterDangerZone.style";
+import styles from "../../styles/Monitoring/HeatExhaustionOccurence.style";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
 
@@ -13,7 +13,7 @@ const DangerZoneDashboard = () => {
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   const [data, setData] = useState([
-    { id: 1, name: "김민기", location: "애월읍 어쩌구", action: "미조치", reason: "위험구역 출입", starttimestamp: "2024-09-09 17:28:07", endtimestamp: "2024-09-09 17:28:07" },
+    { id: 1, name: "김민기", location: "애월읍 어쩌구", action: "미조치", reason: "온열질환", starttimestamp: "2024-09-09 17:28:07", endtimestamp: "2024-09-09 17:28:07" },
     { id: 2, name: "박신영", location: "종달리 어쩌구", action: "조치 완료", reason: "낙상", starttimestamp: "2024-09-09 12:50:56", endtimestamp: "2024-09-09 12:50:56" },
   ]);
 
@@ -31,7 +31,7 @@ const DangerZoneDashboard = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>위험구역 출입 현황</Text>
+        <Text style={styles.headerTitle}>온열질환 발생 현황</Text>
       </View>
 
       <View style={styles.searchContainer}>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
-import styles from "../../styles/Monitoring/EnterDangerZone.style";
+import styles from "../../styles/Monitoring/FallOccurrence.style";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
 
@@ -31,7 +31,7 @@ const DangerZoneDashboard = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>위험구역 출입 현황</Text>
+        <Text style={styles.headerTitle}>낙상 발생 현황</Text>
       </View>
 
       <View style={styles.searchContainer}>

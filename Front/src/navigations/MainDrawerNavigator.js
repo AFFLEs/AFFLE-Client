@@ -4,7 +4,9 @@ import DashBoardPage from '../pages/Monitoring/DashboardPage';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import SOSCallPage from "../pages/Monitoring/SOSCallPage";
+import FallOccurrence from "../pages/Monitoring/FallOccurrence";
 import EnterDangerZone from "../pages/Monitoring/EnterDangerZone";
+import HeatExhaustionOccurence from "../pages/Monitoring/HeatExhaustionOccurence";
 
 const Drawer = createDrawerNavigator();
 
@@ -29,8 +31,12 @@ export default function MainDrawerNavigator() {
             <Drawer.Screen name="Dashboard" component={DashBoardPage} />
             <Drawer.Screen name="SOSCall" component={SOSCallPage} />
             
+            {/* 낙상 발생 현황 및 조치(FallOccurrence) 추가 */}
+            <Drawer.Screen name="FallOccurrence" component={FallOccurrence} />
             {/* 위험 구역 출입 관리(EnterDangerZone) 추가 */}
             <Drawer.Screen name="EnterDangerZone" component={EnterDangerZone} />
+            {/* 온열 발생 현황 및 조치(HeatExhaustionOccurence) 추가 */}
+            <Drawer.Screen name="HeatExhaustionOccurence" component={HeatExhaustionOccurence} />
         </Drawer.Navigator>
     );
 }
