@@ -41,7 +41,7 @@ const MainMenuData = [
       { title: '검침원 목록 관리', routeName: 'MeterReaderList' },
       { title: '노인 목록 관리', routeName: 'ElderlyList' },
       { title: '배정 관리', routeName: 'ManageAnnouncement' },
-      { title: '공지사항 관리', routeName: 'ManageAnnouncement' },
+      { title: '공지사항 관리', routeName: 'NoticeManage' },
     ],
   },
 ];

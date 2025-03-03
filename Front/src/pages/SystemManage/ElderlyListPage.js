@@ -231,10 +231,15 @@ const ElderlyListPage = () => {
     ];
 
     const [selectedId, setSelectedId] = useState(0);
+    const [isRegister, setIsRegister] = useState(false);
     const [elderlyInfoList, setElderlyInfoList] = useState(DUMMY_ELDERLY_INFO_LIST);
     const [elderlyStatusList, setElderlyStatusList] = useState(DUMMY_ELDERLY_STATUS_LIST);
     const handlePress = (id) => {
         setSelectedId(id);
+    };
+
+    const handleRegister = () => {
+
     };
 
     const handleDelete = (id) => {
