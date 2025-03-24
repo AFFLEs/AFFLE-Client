@@ -3,15 +3,8 @@ import ElderlyListPage from "../pages/SystemManage/ElderlyListPage";
 
 const MainMenuData = [
   {
-    title: '모니터링',
-    subItems: [
-      { title: '대시보드', routeName: 'Dashboard' },
-      { title: 'SOS 호출 현황 및 조치', routeName: 'SOSCall' },
-      { title: '낙상 발생 현황 및 조치', routeName: 'FallOccurrence' },
-      { title: '위험구역 출입 현황 및 조치', routeName: 'EnterDangerZone' },
-      { title: '온열 발생 현황 및 조치', routeName: 'HeatExhaustionOccurence' },
-      { title: '생체 정보', routeName: 'BiometricInfo' },
-    ],
+    title: '대시보드',
+    routeName: 'Dashboard',
   },
   {
     title: '온열 질환 관리',

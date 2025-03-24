@@ -11,7 +11,7 @@ const DashBoardPage = () => {
             <View style={styles.leftCards}>
                 {/*Button Card*/}
                 <Card
-                    title="금일 방문 예정 가구"
+                    title="검침원 목록"
                     onPress={() => alert('다음 페이지로 이동!')}
                 >
                     <Text>김기민 (남성, 74세) - 애월읍 애월리</Text>
