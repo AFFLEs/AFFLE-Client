@@ -4,6 +4,8 @@ import LoginPage from './src/pages/Auth/LoginPage';
 // import SignupPage from './src/pages/Auth/SignupPage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainDrawerNavigator from './src/navigations/MainDrawerNavigator';
+import DashBoardModal from './src/components/DashBoardModal';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -22,6 +24,8 @@ export default function App() {
           {/* Main Application Screens */}
           <Stack.Screen name="Main" component={MainDrawerNavigator} />
 
+          {/* OverlayPage for Modal*/}
+          <Stack.Screen name="DashBoardModal" component={DashBoardModal} />
 
         </Stack.Navigator>
       </NavigationContainer>
