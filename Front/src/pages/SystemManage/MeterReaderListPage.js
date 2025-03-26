@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import styles from '../../styles/SystemManage/ListPage.styles';
 import Card from '../../components/Card';
+import RegisterForm from '../../components/RegisterForm';
 import MeterReaderInfoCard from '../../components/MeterReaderInfoCard';
 import MeterReaderListCard from '../../components/MeterReaderListCard';
 
@@ -138,9 +139,46 @@ const MeterReaderListPage = () => {
         },
     ];
     const [selectedId, setSelectedId] = useState(0);
+    const [isRegistering, setIsRegistering] = useState(false);
     const [managerInfoList, setManagerInfoList] = useState(DUMMY_MANAGER_DATA);
+
+    useEffect(() => {
+        fetchMeterReaderList();
+    }, []);
+
+
     const handlePress = (id) => {
         setSelectedId(id);
+    };
+
+    const fetchMeterReaderList = async () => {
+        try {
+            // API 요청 GET
+            // setMeterReaderInfoList, setMeterReaderStatusList
+
+        } catch (error) {
+            console.error(error);
+            Alert.alert('오류', '검침원 목록을 가져오는데 실패했습니다.');
+        }
+    };
+
+    const handleRegister = () => {
+        setIsRegistering(true);
+        setSelectedId(null);
+    };
+
+    const handleSave = async (newSubject) => {
+        try {
+            // API 요청 POST
+            console.log(newSubject);
+            Alert.alert('등록 완료', '검침원이 성공적으로 등록되었습니다.');
+            setIsRegistering(false);
+            setSelectedId(0);
+            fetchMeterReaderList();  // 새로고침
+        } catch (error) {
+            console.error(error);
+            Alert.alert('등록 실패', '검침원 등록 중 문제가 발생했습니다.');
+        }
     };
 
     const handleDelete = (id) => {
@@ -191,10 +229,9 @@ const MeterReaderListPage = () => {
                     </ScrollView>
 
                     <TouchableOpacity style={styles.Button}>
-                        <Text style={styles.ButtonText}>등록하기</Text>
+                        <Text style={styles.ButtonText} onPress={handleRegister}>등록하기</Text>
                     </TouchableOpacity>
                 </Card>
-
             </View>
 
             {/* 검침원 상세 조회 */}
@@ -202,14 +239,22 @@ const MeterReaderListPage = () => {
                 <Card
                     title="🧑🏻‍💼 검침원 정보 상세 조회"
                 >
-                    <MeterReaderInfoCard
-                        manager={managerInfoList.find(e => e.manager_id === selectedId) || managerInfoList[0]}
-                        elderlyList={managerInfoList.find(s => s.manager_id === selectedId).subject || managerInfoList[0].subject}
-                    />
+                    {
+                        isRegistering ? (
+                            <RegisterForm onSave = {handleSave} type={"worker"}/>
+                        ) : (
+                            <View>
+                                <MeterReaderInfoCard
+                                    manager={managerInfoList.find(e => e.manager_id === selectedId) || managerInfoList[0]}
+                                    elderlyList={managerInfoList.find(s => s.manager_id === selectedId).subject || managerInfoList[0].subject}
+                                />
 
-                    <TouchableOpacity style={styles.Button}>
-                        <Text style={styles.ButtonText} onPress={() => handleDelete(selectedId)}>삭제하기</Text>
-                    </TouchableOpacity>
+                                <TouchableOpacity style={styles.Button}>
+                                    <Text style={styles.ButtonText} onPress={() => handleDelete(selectedId)}>삭제하기</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )
+                    }
                 </Card>
             </View>
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import styles from '../styles/SystemManage/RegisterNoticeCard.styles';
 
-const RegisterNoticeCard = ({ target, onTargetChange }) => {
+const RegisterNoticeCard = ({ target, onTargetChange, onRegisterComplete }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [fileName, setFileName] = useState('');
@@ -14,8 +14,44 @@ const RegisterNoticeCard = ({ target, onTargetChange }) => {
     };
 
     // 등록하기
-    const handleRegister = () => {
+    const handleRegister = async () => {
         console.log('등록하기 클릭:', { target, title, content, fileName });
+
+        if (!content || (target === '검침원' && !title)) {
+            Alert.alert('입력 오류', '필수 정보를 입력해주세요.');
+            return;
+        }
+
+        try {
+            const newNotice = {
+                id: Date.now().toString(),
+                title: target === '검침원' ? title : '(스마트워치 공지)',
+                content,
+                file: fileName,
+                date: new Date().toISOString().slice(0, 10),
+                author: '관리자'
+            };
+
+            if (target === '검침원') {
+                // 검침원 대상자일 경우
+                // API 요청 POST
+                Alert.alert('등록 완료', '검침원에게 공지가 등록되었습니다.');
+            } else {
+                // 노인 대상자일 경우
+                // API 요청 POST
+                Alert.alert('등록 완료', '노인에게 공지가 전송되었습니다.');
+            }
+
+            onRegisterComplete && onRegisterComplete(newNotice);
+
+            // 초기화
+            setTitle('');
+            setContent('');
+            setFileName('');
+        } catch (error) {
+            console.error(error);
+            Alert.alert('오류', '공지 등록 중 문제가 발생했습니다.');
+        }
     };
 
     return (
@@ -37,7 +73,7 @@ const RegisterNoticeCard = ({ target, onTargetChange }) => {
                 </View>
             </View>
 
-            {/*안내 문구*/}
+            {/* 안내 문구 */}
             {target === '노인' && (
                 <Text style={styles.noticeText}>
                     * 스마트 워치를 통한 공지가 이루어지므로 간략하게 작성 부탁드립니다.
@@ -113,13 +149,11 @@ const RegisterNoticeCard = ({ target, onTargetChange }) => {
             )}
 
             {/* 등록하기 버튼 */}
-            <TouchableOpacity style={styles.Button}>
-                <Text style={styles.ButtonText} onPress={() => handleRegister}>등록하기</Text>
+            <TouchableOpacity style={styles.Button} onPress={handleRegister}>
+                <Text style={styles.ButtonText}>등록하기</Text>
             </TouchableOpacity>
-
         </View>
     );
 };
 
 export default RegisterNoticeCard;
-

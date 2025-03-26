@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import styles from '../styles/SystemManage/MeterReaderInfoCard.styles';
-import WorkStatusLabel from "./WorkStatusLabel";
+import WorkStatusLabel from "./StatusLabel";
 
 const MeterReaderInfoCard = ({ manager, elderlyList }) => {
     return (

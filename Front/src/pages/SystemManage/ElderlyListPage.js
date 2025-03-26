@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, Alert, ScrollView} from "react-native";
 import styles from '../../styles/SystemManage/ListPage.styles';
 import Card from "../../components/Card";
+import RegisterForm from "../../components/RegisterForm";
 import ElderlyInfoCard from "../../components/ElderlyInfoCard";
 import ElderlyListCard from "../../components/ElderlyListCard";
 
@@ -231,20 +232,48 @@ const ElderlyListPage = () => {
     ];
 
     const [selectedId, setSelectedId] = useState(0);
-    const [isRegister, setIsRegister] = useState(false);
+    const [isRegistering, setIsRegistering] = useState(false);
     const [elderlyInfoList, setElderlyInfoList] = useState(DUMMY_ELDERLY_INFO_LIST);
     const [elderlyStatusList, setElderlyStatusList] = useState(DUMMY_ELDERLY_STATUS_LIST);
-    const handlePress = (id) => {
-        setSelectedId(id);
+
+    useEffect(() => {
+        fetchElderlyList();
+    }, []);
+
+    const fetchElderlyList = async () => {
+        try {
+            // API 요청 GET
+            // setElderlyInfoList, setElderlyStatusList
+
+        } catch (error) {
+            console.error(error);
+            Alert.alert('오류', '노인 목록을 가져오는데 실패했습니다.');
+        }
     };
 
+    const handlePress = (id) => {
+        setSelectedId(id);
+        setIsRegistering(false);
+    };
     const handleRegister = () => {
-
+        setIsRegistering(true);
+        setSelectedId(null);
+    };
+    const handleSave = async (newSubject) => {
+        try {
+            // API 요청 POST
+            console.log(newSubject);
+            Alert.alert('등록 완료', '노인이 성공적으로 등록되었습니다.');
+            setIsRegistering(false);
+            fetchElderlyList();  // 새로고침
+        } catch (error) {
+            console.error(error);
+            Alert.alert('등록 실패', '노인 등록 중 문제가 발생했습니다.');
+        }
     };
 
     const handleDelete = (id) => {
         const subject = DUMMY_ELDERLY_INFO_LIST.find(item => item.elderly_id === id);
-
         if (subject) {
             Alert.alert(
                 "삭제 확인",
@@ -256,7 +285,6 @@ const ElderlyListPage = () => {
             );
         }
     };
-
     const deleteElderly = (id) => {
         setElderlyInfoList(prevList => {
             const updatedList = prevList.filter(item => item.elderly_id !== id);
@@ -291,7 +319,7 @@ const ElderlyListPage = () => {
                         </View>
                     </ScrollView>
 
-                    <TouchableOpacity style={styles.Button}>
+                    <TouchableOpacity style={styles.Button} onPress={handleRegister}>
                         <Text style={styles.ButtonText}>등록하기</Text>
                     </TouchableOpacity>
                 </Card>
@@ -301,17 +329,24 @@ const ElderlyListPage = () => {
             {/* 노인 정보 상세 조회 */}
             <View style={styles.rightCards}>
                 <Card
-                    title="👵🏻 노인 정보 상세 조회"
+                    title={isRegistering ? "📝 노인 등록" : "👵🏻 노인 정보 상세 조회"}
                 >
-                    <ElderlyInfoCard
-                        elderly={elderlyInfoList.find(e => e.elderly_id === selectedId) || DUMMY_ELDERLY_INFO_LIST[0]}
-                        status={elderlyStatusList.find(s => s.elderly_id === selectedId) || DUMMY_ELDERLY_STATUS_LIST[0]}
-                    />
+                    {
+                        isRegistering ? (
+                            <RegisterForm onSave={handleSave} type={"elderly"} />
+                        ) : (
+                            <View>
+                                <ElderlyInfoCard
+                                    elderly={elderlyInfoList.find(e => e.elderly_id === selectedId) || DUMMY_ELDERLY_INFO_LIST[0]}
+                                    status={elderlyStatusList.find(s => s.elderly_id === selectedId) || DUMMY_ELDERLY_STATUS_LIST[0]}
+                                />
 
-                    <TouchableOpacity style={styles.Button}>
-                        <Text style={styles.ButtonText} onPress={() => handleDelete(selectedId)}>삭제하기</Text>
-                    </TouchableOpacity>
-
+                                <TouchableOpacity style={styles.Button}>
+                                    <Text style={styles.ButtonText} onPress={() => handleDelete(selectedId)}>삭제하기</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )
+                    }
                 </Card>
             </View>
 

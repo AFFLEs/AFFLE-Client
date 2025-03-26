@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import SOSCallPage from "../pages/Monitoring/SOSCallPage";
 import MeterReaderListPage from "../pages/SystemManage/MeterReaderListPage";
 import ElderlyListPage from "../pages/SystemManage/ElderlyListPage";
+import ManageAssignmentPage from "../pages/SystemManage/ManageAssignmentPage";
 import NoticeManagePage from "../pages/SystemManage/NoticeManagePage";
 
 const Drawer = createDrawerNavigator();
@@ -34,7 +35,9 @@ export default function MainDrawerNavigator() {
 
             <Drawer.Screen name="MeterReaderList" component={MeterReaderListPage} />
             <Drawer.Screen name="ElderlyList" component={ElderlyListPage} />
+            <Drawer.Screen name="ManageAssignment" component={ManageAssignmentPage} />
             <Drawer.Screen name="NoticeManage" component={NoticeManagePage} />
+
 
 
 

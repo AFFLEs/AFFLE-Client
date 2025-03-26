@@ -1,22 +1,12 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-    /* 공지 없음 상태 */
-    emptyContainer: {
-        padding: 5,
-    },
-    title: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        marginTop: 10,
-        paddingVertical:10,
-    },
-
     /* 표 컨테이너: 전체 테두리 */
     tableContainer: {
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 4,
+        marginVertical: 15,
     },
     /* 가로줄 (행) */
     tableRow: {
@@ -42,7 +32,6 @@ const styles = StyleSheet.create({
         borderLeftWidth: 1,
         borderColor: '#ccc',
     },
-    /* 여러 줄 내용 */
     contentText: {
         lineHeight: 20,
     },

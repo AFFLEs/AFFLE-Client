@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View } from "react-native";
+import React, {useEffect, useState} from 'react';
+import {Text, TouchableOpacity, View, Alert} from "react-native";
 import styles from '../../styles/SystemManage/ListPage.styles';
 import Card from "../../components/Card";
 import MeterReaderNoticeListCard from "../../components/MeterReaderNoticeListCard";
@@ -26,12 +26,36 @@ const NoticeManagePage = () => {
         },
     ];
 
+    const [notices, setNotices] = useState([]);
     const [selectedNotice, setSelectedNotice] = useState(DUMMY_NOTICES[0]);
+    const [isRegistering, setIsRegistering] = useState(false);
     const [target, setTarget] = useState('검침원'); // 공지 대상자
+
+    const fetchNotices = async () => {
+        try {
+            // API 요청 GET
+            setNotices(DUMMY_NOTICES);
+        } catch (error) {
+            console.error(error);
+            Alert.alert('오류', '공지 목록을 불러오는데 실패했습니다.');
+        }
+    };
+
+    useEffect(() => {
+        fetchNotices();
+    }, []);
+
+
 
     // 공지 선택
     const handleSelectNotice = (notice) => {
         setSelectedNotice(notice);
+        setIsRegistering(false);
+    };
+
+    const handleRegister = () => {
+        setIsRegistering(true);
+        setSelectedNotice(null);
     };
 
     // 공지 대상자 변경
@@ -45,20 +69,31 @@ const NoticeManagePage = () => {
             <View style={styles.leftCards}>
                 <Card title="📢 검침원 공지사항">
                     <MeterReaderNoticeListCard
-                        notices={DUMMY_NOTICES}
+                        notices={notices}
                         onSelectNotice={handleSelectNotice}
                     />
-                    <NoticeDetailCard notice={selectedNotice} />
+                    <TouchableOpacity style={styles.Button} onPress={handleRegister}>
+                        <Text style={styles.ButtonText}>등록하기</Text>
+                    </TouchableOpacity>
                 </Card>
             </View>
 
             {/* 공지사항 등록 */}
             <View style={styles.rightCards}>
-                <Card title="✒️ 공지사항 등록">
-                    <RegisterNoticeCard
-                        target={target}
-                        onTargetChange={handleTargetChange}
-                    />
+                <Card title={isRegistering ? "📝 공지사항 등록" : "✅ 공지사항 상세 조회"}>
+                    {isRegistering ? (
+                        <RegisterNoticeCard
+                            target={target}
+                            onTargetChange={handleTargetChange}
+                            onRegisterComplete={(newNotice) => {
+                                setIsRegistering(false);
+                                fetchNotices();
+                                setSelectedNotice(newNotice);
+                            }}
+                        />
+                    ) : (
+                        <NoticeDetailCard notice={selectedNotice} />
+                    )}
                 </Card>
             </View>
         </View>

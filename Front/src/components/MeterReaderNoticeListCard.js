@@ -1,19 +1,15 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, FlatList, StyleSheet, ScrollView} from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 
 const MeterReaderNoticeListCard = ({ notices, onSelectNotice }) => {
     const renderItem = ({ item }) => (
         <TouchableOpacity
             style={styles.row}
             activeOpacity={0.7}
-            onPress={() => onSelectNotice(item)} // 클릭 시 부모로 전달
+            onPress={() => onSelectNotice(item)}
         >
             <Text style={styles.id}>{item.id}</Text>
-            <Text
-                style={styles.content}
-                numberOfLines={1}
-                ellipsizeMode="tail"
-            >
+            <Text style={styles.content} numberOfLines={1} ellipsizeMode="tail">
                 {item.title}
             </Text>
             <Text style={styles.author}>{item.author}</Text>
@@ -21,26 +17,31 @@ const MeterReaderNoticeListCard = ({ notices, onSelectNotice }) => {
         </TouchableOpacity>
     );
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={[styles.headerText, { flex: 0.5 }]}>연번</Text>
-                <Text style={[styles.headerText, { flex: 2 }]}>내용</Text>
-                <Text style={[styles.headerText, { flex: 1 }]}>작성자</Text>
-                <Text style={[styles.headerText, { flex: 1.5 }]}>등록 일시</Text>
-            </View>
-
-            <FlatList
-                data={notices}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id}
-                style = {styles.list}
-            />
+    const renderHeader = () => (
+        <View style={styles.header}>
+            <Text style={[styles.headerText, { flex: 0.5 }]}>연번</Text>
+            <Text style={[styles.headerText, { flex: 2 }]}>내용</Text>
+            <Text style={[styles.headerText, { flex: 1 }]}>작성자</Text>
+            <Text style={[styles.headerText, { flex: 1.5 }]}>등록 일시</Text>
         </View>
+    );
+
+    return (
+        <FlatList
+            data={notices}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            ListHeaderComponent={renderHeader}
+            style={styles.list}
+            contentContainerStyle={styles.container}
+        />
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        marginVertical: 15,
+    },
     header: {
         flexDirection: 'row',
         paddingVertical: 9,
