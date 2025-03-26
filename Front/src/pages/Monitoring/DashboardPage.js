@@ -122,8 +122,7 @@ const DashBoardPage = () => {
         {/* 오버레이 */}
         {isOverlayVisible && (
             <DashBoardModal onClose={toggleOverlay} visible={isOverlayVisible}>
-                <Text>온열질환 경고 알림 내용</Text>
-                {/* 여기에 추가적인 내용이 들어갈 수 있습니다. */}
+                <HeatIllnessDetailModal />
             </DashBoardModal>
         )}
 
