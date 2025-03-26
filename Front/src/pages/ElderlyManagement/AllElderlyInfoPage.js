@@ -1,41 +1,92 @@
-import React from 'react';
-import {View, Text, StyleSheet} from "react-native";
-import styles from '../../styles/Monitoring/DashboardPage.styles';
-import Card from "../../components/Card"; // 스타일 파일 import
+import React, { useState } from 'react';
+import { View, Text, ScrollView } from 'react-native';
+import styles from '../../styles/ElderlyManagement/AllElderlyInfoPage.styles';
+import Card from '../../components/Card';
+import SearchInput from '../../components/SearchInput';
 
+const dummyData = [
+  {
+    managerName: '김민기',
+    region: '애월읍 애월리',
+    elderlyList: Array(8).fill({
+      name: '박신영',
+      gender: '여성',
+      age: 92,
+      region: '애월읍 애월리',
+      recentVisit: '24.11.30',
+    })
+  },
+  {
+    managerName: '김지민',
+    region: '애월읍 애월리',
+    elderlyList: Array(8).fill({
+      name: '박신영',
+      gender: '여성',
+      age: 92,
+      region: '애월읍 애월리',
+      recentVisit: '24.11.30',
+    })
+  },
+  {
+    managerName: '박영신',
+    region: '애월읍 애월리',
+    elderlyList: Array(6).fill({
+      name: '박신영',
+      gender: '여성',
+      age: 92,
+      region: '애월읍 애월리',
+      recentVisit: '24.11.30',
+    })
+  },
+  {
+    managerName: '한예원',
+    region: '애월읍 애월리',
+    elderlyList: Array(8).fill({
+      name: '박신영',
+      gender: '여성',
+      age: 92,
+      region: '애월읍 애월리',
+      recentVisit: '24.11.30',
+    })
+  },
+];
 
-const DashBoardPage = () => {
-    return (
-        <View style={styles.container}>
-            {/* 왼쪽 Card 모음 */}
-            <View style={styles.leftCards}>
-                {/*Button Card*/}
-                <Card
-                    title="금일 방문 예정 가구"
-                    onPress={() => alert('다음 페이지로 이동!')}
-                >
-                    <Text>김기민 (남성, 74세) - 애월읍 애월리</Text>
-                    <Text>박신영 (여성, 92세) - 애월읍 고성리</Text>
-                </Card>
+const AllElderlyInfoPage = () => {
+  const [searchKeyword, setSearchKeyword] = useState('');
 
-                {/*No Button Card*/}
-                <Card
-                    title="금일 날씨"
-                >
-                    <Text>맑음</Text>
-                </Card>
+  const filteredData = dummyData.filter(group =>
+    group.managerName.includes(searchKeyword)
+  );
 
-                <Card
-                    title="공지 사항"
-                    onPress={() => alert('다음 페이지로 이동!')}
-                >
-                    <Text>새해 복 많이 받아용!</Text>
-                </Card>
-
-            </View>
-
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      <Card>
+        <View style={styles.titleRow}>
+          <Text style={styles.cardTitle}>🗂 담당자별 방문 노인 분담표</Text>
+          <SearchInput
+            value={searchKeyword}
+            onChangeText={setSearchKeyword}
+            placeholder="담당자명 입력"
+          />
         </View>
-    );
+
+        {filteredData.map((group, idx) => (
+          <View key={idx} style={styles.groupBlock}>
+            <Text style={styles.managerTitle}>{group.managerName} <Text style={styles.managerRegion}>{group.region}</Text></Text>
+            <View style={styles.elderlyList}>
+              {group.elderlyList.map((elder, i) => (
+                <View key={i} style={styles.elderlyCard}>
+                  <Text style={styles.elderlyName}>{elder.name} {elder.gender} | {elder.age}세</Text>
+                  <Text style={styles.elderlyInfo}>{elder.region}</Text>
+                  <Text style={styles.elderlyInfo}>최근 방문 일자: {elder.recentVisit}</Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        ))}
+      </Card>
+    </ScrollView>
+  );
 };
 
-export default DashBoardPage;
+export default AllElderlyInfoPage;
