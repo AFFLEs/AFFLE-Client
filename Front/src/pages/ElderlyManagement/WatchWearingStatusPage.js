@@ -1,62 +1,92 @@
-import React from 'react';
-import {View, Text, StyleSheet} from "react-native";
-import styles from '../../styles/Monitoring/DashboardPage.styles';
-import Card from "../../components/Card"; // 스타일 파일 import
+import React, { useState } from 'react';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import styles from '../../styles/ElderlyManagement/WatchWearingStatusPage.styles';
+import SearchInput from '../../components/SearchInput';
+import Card from '../../components/Card';
 
+const dummyData = [
+  {
+    name: '박신영', gender: '여성', age: 92, status: '미착용', lastWorn: '3일 전'
+  },
+  {
+    name: '김기민', gender: '남성', age: 74, status: '충전중', lastWorn: '오늘'
+  },
+  {
+    name: '고길동', gender: '남성', age: 80, status: '착용', lastWorn: '오늘'
+  },
+  {
+    name: '이순자', gender: '여성', age: 77, status: '충전중', lastWorn: '1일 전'
+  },
+  {
+    name: '박영신', gender: '여성', age: 92, status: '착용', lastWorn: '오늘'
+  }
+];
 
-const DashBoardPage = () => {
-    return (
-        <View style={styles.container}>
-            {/* 왼쪽 Card 모음 */}
-            <View style={styles.leftCards}>
-                {/*Button Card*/}
-                <Card
-                    title="금일 방문 예정 가구"
-                    onPress={() => alert('다음 페이지로 이동!')}
-                >
-                    <Text>김기민 (남성, 74세) - 애월읍 애월리</Text>
-                    <Text>박신영 (여성, 92세) - 애월읍 고성리</Text>
-                </Card>
+const WatchWearingStatus = () => {
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('미착용');
 
-                {/*No Button Card*/}
-                <Card
-                    title="금일 날씨"
-                >
-                    <Text>맑음</Text>
-                </Card>
+  const filteredList = dummyData.filter(elder =>
+    elder.name.includes(searchKeyword) && elder.status === selectedStatus
+  );
 
-                <Card
-                    title="공지 사항"
-                    onPress={() => alert('다음 페이지로 이동!')}
-                >
-                    <Text>새해 복 많이 받아용!</Text>
-                </Card>
+  const getStatusCount = (type) => dummyData.filter(elder => elder.status === type).length;
 
-            </View>
-
-            {/* 오른쪽 Card 모음 */}
-            <View style={styles.rightCards}>
-                <Card
-                    title="담당 현장 조치 및 현황"
-                    onPress={() => alert('다음 페이지로 이동!')}
-                >
-                    <Text>조치 완료</Text>
-                    <Text>조치 중</Text>
-                </Card>
-
-                <Card
-                    title="온열 질환 현황"
-                    onPress={() => alert('다음 페이지로 이동!')}
-                >
-                    <Text>주의</Text>
-                    <Text>경고</Text>
-                    <Text>위험</Text>
-                    <Text>확인 불가</Text>
-                </Card>
-            </View>
-
+  return (
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
+      <Card>
+        <View style={styles.titleRow}>
+          <Text style={styles.title}>⌚ 위치 착용 현황 및 관리</Text>
+          <SearchInput
+            value={searchKeyword}
+            onChangeText={setSearchKeyword}
+            placeholder="검색어 입력"
+          />
         </View>
-    );
+
+        <View style={styles.statusTabs}>
+          <TouchableOpacity
+            style={[styles.tab, styles.red, selectedStatus === '미착용' && styles.selected]}
+            onPress={() => setSelectedStatus('미착용')}
+          >
+            <Text style={styles.tabText}>미착용</Text>
+            <Text style={styles.tabCount}>{getStatusCount('미착용')}명</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.tab, styles.yellow, selectedStatus === '충전중' && styles.selected]}
+            onPress={() => setSelectedStatus('충전중')}
+          >
+            <Text style={styles.tabText}>충전 중</Text>
+            <Text style={styles.tabCount}>{getStatusCount('충전중')}명</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.tab, styles.green, selectedStatus === '착용' && styles.selected]}
+            onPress={() => setSelectedStatus('착용')}
+          >
+            <Text style={styles.tabText}>착용</Text>
+            <Text style={styles.tabCount}>{getStatusCount('착용')}명</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.elderlyList}>
+          {filteredList.map((elder, idx) => (
+            <View key={idx} style={styles.elderCard}>
+              <Text style={styles.elderName}>{elder.name}</Text>
+              <Text style={styles.elderSub}>{elder.gender} | {elder.age}세</Text>
+              <Text style={styles.elderDetail}>마지막 착용 일자 : {elder.lastWorn}</Text>
+              {elder.status === '미착용' && (
+                <TouchableOpacity style={styles.alertButton}>
+                  <Text style={styles.alertButtonText}>착용 권장 알림 전송</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          ))}
+        </View>
+      </Card>
+    </ScrollView>
+  );
 };
 
-export default DashBoardPage;
+export default WatchWearingStatus;
