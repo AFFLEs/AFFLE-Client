@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   closeButton: {
     position: 'absolute',
     top: 20,
-    left: 20,
+    left: 13,
   },
   closeText: {
     fontSize: 30,

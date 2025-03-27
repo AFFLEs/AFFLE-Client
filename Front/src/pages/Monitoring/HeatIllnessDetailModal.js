@@ -19,62 +19,76 @@ const HeatIllnessDetailModal = ({ onClose }) => {
 
   return (
       <View style={styles.modalContainer}>
-        <ScrollView>
-          <Text style={styles.title}>담당 검침원 별 전체 노인 온열질환 현황 (조치 중)</Text>
-
           <View style={styles.rowContainer}>
             {/* 왼쪽 열 (조치 중 테이블) */}
             <View style={styles.leftColumn}>
-              <View style={styles.table}>
-                <View style={styles.tableRow}>
-                  <Text style={styles.header}>성명</Text>
-                  <Text style={styles.header}>담당자</Text>
-                  <Text style={styles.header}>피부온도</Text>
-                  <Text style={styles.header}>온열위험도</Text>
-                  <Text style={styles.header}>조치 현황</Text>
-                  <Text style={styles.header}>조치 알림</Text>
-                </View>
-                {[
-                  { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '조치 중', alert: '조치요망' },
-                  { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '조치 완료', alert: '조치요망' },
-                  { name: '', checker: '', temp: '', risk: '주의', status: '', alert: '' },
-                ].map((row, idx) => (
-                  <View key={idx} style={styles.tableRow}>
-                    <Text style={styles.cell}>{row.name}</Text>
-                    <Text style={styles.cell}>{row.checker}</Text>
-                    <Text style={styles.cell}>{row.temp}</Text>
-                    <Text style={[styles.cell, riskLevelStyle(row.risk)]}>{row.risk}</Text>
-                    <Text style={[styles.cell, row.status === '조치 완료' ? styles.done : styles.inProgress]}>
-                      {row.status}
-                    </Text>
-                    <Text style={styles.cell}>{row.alert}</Text>
-                  </View>
-                ))}
-              </View>
-              <Text style={styles.title}>담당 검침원 별 전체 노인 온열질환 현황 (조치 완료)</Text>
-                <View style={styles.table}>
-                  <View style={styles.tableRow}>
-                    <Text style={styles.header}>성명</Text>
-                    <Text style={styles.header}>담당자</Text>
-                    <Text style={styles.header}>피부온도</Text>
-                    <Text style={styles.header}>온열위험도</Text>
-                    <Text style={styles.header}>조치 현황</Text>
-                  </View>
-                  {[
-                    { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '' },
-                    { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '' },
-                    { name: '', checker: '', temp: '', risk: '주의', status: '' },
-                  ].map((row, idx) => (
-                    <View key={idx} style={styles.tableRow}>
-                      <Text style={styles.cell}>{row.name}</Text>
-                      <Text style={styles.cell}>{row.checker}</Text>
-                      <Text style={styles.cell}>{row.temp}</Text>
-                      <Text style={[styles.cell, riskLevelStyle(row.risk)]}>{row.risk}</Text>
-                      <Text style={styles.cell}>{row.status}</Text>
-                    </View>
-                  ))}
-                </View>
+                <Text style={styles.title}>담당 검침원 별 전체 노인 온열질환 현황 (조치 중)</Text>
+                    <ScrollView style ={styles.tableWrapper}>
+                        <View style={styles.table}>
+                            <View style={styles.tableRow}>
+                              <Text style={styles.header}>성명</Text>
+                              <Text style={styles.header}>담당자</Text>
+                              <Text style={styles.header}>피부온도</Text>
+                              <Text style={styles.header}>온열위험도</Text>
+                              <Text style={styles.header}>조치 현황</Text>
+                              <Text style={styles.header}>조치 알림</Text>
+                            </View>
+                            {[
+                              { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '조치 중', alert: '조치요망' },
+                              { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '조치 완료', alert: '조치요망' },
+                              { name: '', checker: '', temp: '', risk: '주의', status: '', alert: '' },
+                            ].map((row, idx) => (
+                              <View key={idx} style={styles.tableRow}>
+                                <Text style={styles.cell}>{row.name}</Text>
+                                <Text style={styles.cell}>{row.checker}</Text>
+                                <Text style={styles.cell}>{row.temp}</Text>
+                                <Text style={[styles.cell, riskLevelStyle(row.risk)]}>{row.risk}</Text>
+                                <Text style={[styles.cell, row.status === '조치 완료' ? styles.done : styles.inProgress]}>
+                                  {row.status}
+                                </Text>
+                                <Text style={styles.cell}>{row.alert}</Text>
+                              </View>
+                            ))}
+                        </View>
+                    </ScrollView>
+
+                    {/*조치 완료 테이블 */}
+                    <Text style={styles.title}>담당 검침원 별 전체 노인 온열질환 현황 (조치 완료)</Text>
+                    <ScrollView style ={styles.tableWrapper}>
+                        <View style={styles.table}>
+                          <View style={styles.tableRow}>
+                            <Text style={styles.header}>성명</Text>
+                            <Text style={styles.header}>담당자</Text>
+                            <Text style={styles.header}>피부온도</Text>
+                            <Text style={styles.header}>온열위험도</Text>
+                            <Text style={styles.header}>조치 현황</Text>
+                          </View>
+                          {[
+                            { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '' },
+                            { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '' },
+                            { name: '', checker: '', temp: '', risk: '주의', status: '' },
+                            { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '' },
+                            { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '' },
+                            { name: '', checker: '', temp: '', risk: '주의', status: '' },
+                            { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '' },
+                            { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '' },
+                            { name: '', checker: '', temp: '', risk: '주의', status: '' },
+                            { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '' },
+                            { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '' },
+                            { name: '', checker: '', temp: '', risk: '주의', status: '' },
+                          ].map((row, idx) => (
+                            <View key={idx} style={styles.tableRow}>
+                              <Text style={styles.cell}>{row.name}</Text>
+                              <Text style={styles.cell}>{row.checker}</Text>
+                              <Text style={styles.cell}>{row.temp}</Text>
+                              <Text style={[styles.cell, riskLevelStyle(row.risk)]}>{row.risk}</Text>
+                              <Text style={styles.cell}>{row.status}</Text>
+                            </View>
+                          ))}
+                        </View>
+                    </ScrollView>
             </View>
+
             {/* 오른쪽 열 (온열질환 위험도와 관련된 나머지 표들) */}
             <View style={styles.rightColumn}>
               <Text style={styles.subTitle}>온열질환 위험도</Text>
@@ -101,7 +115,6 @@ const HeatIllnessDetailModal = ({ onClose }) => {
               <Text style={styles.footnote}>* 온열질환 위험도 주의 이상인 사용자 수입니다.</Text>
             </View>
           </View>
-        </ScrollView>
       </View>
     );
   };
@@ -112,6 +125,14 @@ modalContainer: {
   width: '100%',
   maxHeight: '100%',
   top: -80,
+},
+tableWrapper: {
+  height: 255,
+  borderWidth: 1,
+  borderColor: '#ccc',
+  borderRadius: 4,
+  marginBottom: 12,
+  overflow: 'hidden',
 },
 closeText: {
   color: '#333',
