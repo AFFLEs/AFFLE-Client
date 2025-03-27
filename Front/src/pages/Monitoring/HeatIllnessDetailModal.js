@@ -14,19 +14,55 @@ const HeatIllnessDetailModal = ({ onClose }) => {
           ? '#FF5F00'
           : '#000',
       fontWeight: 'bold',
-    };
+     };
     };
 
     const [actionInProgress, setActionInProgress] = useState([
-      { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '조치 중', alert: '조치요망' },
-      { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '조치 중', alert: '조치요망' },
+      { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '조치 중', alert: '조치요망' , createDate: '2025-03-25' },
+      { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '조치 중', alert: '조치요망',createDate: '2025-02-25'  },
     ]);
 
     const [actionCompleted, setActionCompleted] = useState([
-      { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '조치 완료' },
-      { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '조치 완료' },
+      { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '조치 완료', createDate: '2025-01-25' },
+      { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '조치 완료' , createDate: '2025-02-26'},
     ]);
 
+    {/*표 정렬*/}
+        {/*조치 중*/}
+    const [inProgressSortConfig, setInProgressSortConfig] = useState({ key: 'createDate', direction: 'asc' });
+        {/*조치 완료*/}
+    const [completedSortConfig, setCompletedSortConfig] = useState({ key: 'createDate', direction: 'asc' });
+
+    const sortData = (data, sortConfig) => {
+        const direction = sortConfig.direction === 'asc' ? 1 : -1;
+        return [...data].sort((a, b) => {
+            if (a[sortConfig.key] < b[sortConfig.key]) return -1 * direction;
+            if (a[sortConfig.key] > b[sortConfig.key]) return 1 * direction;
+            return 0;
+        });
+    };
+
+    const handleSort = (key, table) => {
+        if (table === 'inProgress'){
+            setInProgressSortConfig((prevConfig) => {
+              if (prevConfig.key === key) {
+                return { ...prevConfig, direction: prevConfig.direction === 'asc' ? 'desc' : 'asc' };
+              }
+              return { key, direction: 'asc' };  {/* 다른 열을 클릭하면 오름차순으로 설정*/}
+            });
+        } else if (table === 'completed'){
+            setCompletedSortConfig((prevConfig) => {
+                if (prevConfig.key === key) {
+                  return { ...prevConfig, direction: prevConfig.direction === 'asc' ? 'desc' : 'asc' };
+                }
+                return { key, direction: 'asc' };
+            });
+        }
+    };
+    const sortedInProgressData = sortData(actionInProgress, inProgressSortConfig);
+    const sortedCompletedData = sortData(actionCompleted, completedSortConfig);
+
+    {/*조치중 조치완료 표 interaction*/}
     const handleActionStatusChange = (row, fromTable, toTable) => {
         if (fromTable === 'inProgress' && toTable === 'completed') {
           // 조치 중 >> 조치 완료
@@ -57,14 +93,26 @@ const HeatIllnessDetailModal = ({ onClose }) => {
                     <ScrollView style ={styles.tableWrapper}>
                         <View style={styles.table}>
                             <View style={styles.tableRow}>
-                              <Text style={styles.header}>성명</Text>
-                              <Text style={styles.header}>담당자</Text>
-                              <Text style={styles.header}>피부온도</Text>
-                              <Text style={styles.header}>온열위험도</Text>
-                              <Text style={styles.header}>조치 현황</Text>
-                              <Text style={styles.header}>조치 알림</Text>
+                                <TouchableOpacity onPress={() => handleSort('name','inProgress')} style={styles.touchableCell} >
+                                  <Text style={styles.header}>성명</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleSort('checker','inProgress')} style={styles.touchableCell}>
+                                    <Text style={styles.header}>담당자</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.touchableCell}>
+                                    <Text style={styles.header}>피부온도</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleSort('risk','inProgress')} style={styles.touchableCell}>
+                                    <Text style={styles.header}>온열위험도</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.touchableCell}>
+                                    <Text style={styles.header}>조치 현황</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.touchableCell}>
+                                    <Text style={styles.header}>조치 알림</Text>
+                                </TouchableOpacity>
                             </View>
-                            {actionInProgress.map((row, idx) => (
+                            {sortedInProgressData.map((row, idx) => (
                               <View key={idx} style={styles.tableRow}>
                                 <Text style={styles.cell}>{row.name}</Text>
                                 <Text style={styles.cell}>{row.checker}</Text>
@@ -89,13 +137,23 @@ const HeatIllnessDetailModal = ({ onClose }) => {
                     <ScrollView style ={styles.tableWrapper}>
                         <View style={styles.table}>
                           <View style={styles.tableRow}>
-                            <Text style={styles.header}>성명</Text>
-                            <Text style={styles.header}>담당자</Text>
-                            <Text style={styles.header}>피부온도</Text>
-                            <Text style={styles.header}>온열위험도</Text>
-                            <Text style={styles.header}>조치 현황</Text>
+                            <TouchableOpacity onPress={() => handleSort('name','completed')} style={styles.touchableCell} >
+                                <Text style={styles.header}>성명</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => handleSort('checker','completed')} style={styles.touchableCell}>
+                                <Text style={styles.header}>담당자</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.touchableCell}>
+                                <Text style={styles.header}>피부온도</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => handleSort('risk','completed')} style={styles.touchableCell}>
+                                <Text style={styles.header}>온열위험도</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.touchableCell}>
+                                <Text style={styles.header}>조치 현황</Text>
+                            </TouchableOpacity>
                           </View>
-                          {actionCompleted.map((row, idx) => (
+                          {sortedCompletedData.map((row, idx) => (
                             <View key={idx} style={styles.tableRow}>
                               <Text style={styles.cell}>{row.name}</Text>
                               <Text style={styles.cell}>{row.checker}</Text>
@@ -192,11 +250,10 @@ tableRow: {
   borderColor: '#ccc',
 },
 header: {
-  flex: 1,
-  fontWeight: 'bold',
-  padding: 6,
-  textAlign: 'center',
-  backgroundColor: '#eee',
+//  flex: 1,
+//  fontWeight: 'bold',
+//  padding: 6,
+    fontWeight: 'bold',
 },
 cell: {
   flex: 1,
@@ -230,6 +287,14 @@ footnote: {
   fontSize: 12,
   color: '#888',
   marginBottom: 10,
+},
+touchableCell: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    backgroundColor: '#eee',
+    padding: 6,
 },
 });
 
