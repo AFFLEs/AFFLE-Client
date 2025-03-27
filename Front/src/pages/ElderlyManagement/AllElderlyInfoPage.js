@@ -14,7 +14,7 @@ const dummyData = [
       age: 92,
       region: '애월읍 애월리',
       recentVisit: '24.11.30',
-    })
+    }),
   },
   {
     managerName: '김지민',
@@ -25,7 +25,7 @@ const dummyData = [
       age: 92,
       region: '애월읍 애월리',
       recentVisit: '24.11.30',
-    })
+    }),
   },
   {
     managerName: '박영신',
@@ -36,7 +36,7 @@ const dummyData = [
       age: 92,
       region: '애월읍 애월리',
       recentVisit: '24.11.30',
-    })
+    }),
   },
   {
     managerName: '한예원',
@@ -47,7 +47,7 @@ const dummyData = [
       age: 92,
       region: '애월읍 애월리',
       recentVisit: '24.11.30',
-    })
+    }),
   },
 ];
 
@@ -70,20 +70,28 @@ const AllElderlyInfoPage = () => {
           />
         </View>
 
-        {filteredData.map((group, idx) => (
-          <View key={idx} style={styles.groupBlock}>
-            <Text style={styles.managerTitle}>{group.managerName} <Text style={styles.managerRegion}>{group.region}</Text></Text>
-            <View style={styles.elderlyList}>
-              {group.elderlyList.map((elder, i) => (
-                <View key={i} style={styles.elderlyCard}>
-                  <Text style={styles.elderlyName}>{elder.name} {elder.gender} | {elder.age}세</Text>
-                  <Text style={styles.elderlyInfo}>{elder.region}</Text>
-                  <Text style={styles.elderlyInfo}>최근 방문 일자: {elder.recentVisit}</Text>
-                </View>
-              ))}
+        <View style={styles.grid}>
+          {filteredData.map((group, idx) => (
+            <View key={idx} style={styles.groupCard}>
+              <View style={styles.managerRow}>
+                <Text style={styles.managerTitle}>{group.managerName}</Text>
+                <Text style={styles.managerRegion}> {group.region}</Text>
+              </View>
+              <View style={styles.elderlyList}>
+                {group.elderlyList.map((elder, i) => (
+                  <View key={i} style={styles.elderlyCard}>
+                    <View style={styles.nameRow}>
+                      <Text style={styles.elderlyName}>{elder.name}</Text>
+                      <Text style={styles.elderlySub}> {elder.gender} | {elder.age}세</Text>
+                    </View>
+                    <Text style={styles.elderlyInfo}>{elder.region}</Text>
+                    <Text style={styles.elderlyInfo}>최근 방문 일자: {elder.recentVisit}</Text>
+                  </View>
+                ))}
+              </View>
             </View>
-          </View>
-        ))}
+          ))}
+        </View>
       </Card>
     </ScrollView>
   );

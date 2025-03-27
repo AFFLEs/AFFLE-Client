@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 5,
   },
   cardTitle: {
     fontSize: 20,
@@ -21,28 +21,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    gap: 24,
+    gap: 5,
   },
   groupCard: {
     width: '48%',
     backgroundColor: '#fff',
     padding: 16,
     borderRadius: 8,
-    marginBottom: 24,
+    // marginBottom: 24,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
+  managerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
   managerTitle: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 4,
     color: '#1C1F23',
   },
   managerRegion: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: 'normal',
     color: '#444',
-    marginBottom: 6,
   },
   elderlyList: {
     flexDirection: 'row',
@@ -55,11 +58,19 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
   },
+  nameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
   elderlyName: {
     fontSize: 14,
     fontWeight: 'bold',
-    marginBottom: 4,
     color: '#000',
+  },
+  elderlySub: {
+    fontSize: 13,
+    color: '#444',
   },
   elderlyInfo: {
     fontSize: 12,
