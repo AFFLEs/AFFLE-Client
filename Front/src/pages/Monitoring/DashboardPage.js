@@ -17,6 +17,20 @@ const DashBoardPage = () => {
         { manager_id: 4, name: '한예원', status: 2, work_region: '애월읍 고성리', contact: '010-9999-8888' },
         { manager_id: 5, name: '한예원', status: 2, work_region: '애월읍 고성리', contact: '010-9999-8888' },
     ];
+    const DUMMY_WATCH_DATA = [
+        { name: '박신영', location: '애월읍 고내리', lastDate: '2025-03-26' },
+        { name: '박신영', location: '애월읍 고내리', lastDate: '2025-03-20' },
+        { name: '박신영', location: '애월읍 고내리', lastDate: '2025-03-18' },
+        { name: '박신영', location: '애월읍 고내리', lastDate: '2025-03-15' },
+        { name: '박신영', location: '애월읍 고내리', lastDate: '2025-03-10' },
+        { name: '박신영', location: '애월읍 고내리', lastDate: '2025-03-07' },
+        { name: '박신영', location: '애월읍 고내리', lastDate: '2025-03-01' },
+        ];
+
+    const totalUsers = 100; {/*전체 노인 수 가정 */}
+    const notWearingCount = 10; {/*미착용자 노인 수 가정*/}
+    const wearingCount = totalUsers - notWearingCount;
+    const wearingRate = ((wearingCount / totalUsers) * 100).toFixed(1);
 
     const [selectedId, setSelectedId] = useState(0);
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
@@ -82,12 +96,37 @@ const DashBoardPage = () => {
                     </Card>
 
 
-                    <Card title="스마트워치 착용 현황">
-                        <Text>위치 착용: 10 / 13명</Text>
-                        <Text>착용률: 76.9%</Text>
-                        <Text style={{ marginTop: 10, fontWeight: 'bold' }}>미착용자:</Text>
-                        <Text>박신영 - 애월읍 고내리</Text>
-                    </Card>
+                <Card title="스마트워치 착용 현황" style={{maxHeight:150}}>
+                  <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
+                    <Text style={{ flex: 1, fontWeight: 'bold' ,fontSize:15}}>위치 착용</Text>
+                    <Text style={{ flex: 1, fontWeight: 'bold' , fontSize:15, textAlign:'right'}}>{`${wearingCount} / ${totalUsers}명`}</Text>
+                    <View style={{paddingHorizontal:10}}></View>
+                    <Text style={{ flex: 1, fontWeight: 'bold', fontSize:15 }}>착용률</Text>
+                    <Text style={{ flex: 1, fontWeight: 'bold' , fontSize:15, textAlign:'right'}}>{`${wearingRate}%`}</Text>
+                  </View>
+                  <Text style={{ marginTop: 10, fontWeight: 'bold' }}>워치 미착용자 목록</Text>
+                  {/* ScrollView로 세로 스크롤 가능하게 만들기 */}
+                  <View style={{height:150 }}>
+                    <ScrollView style={styles.watchScrollContainer}
+                        contentContainerStyle={styles.watchScrollContent}
+                        showsVerticalScrollIndicator={true}
+                        nestedScrollEnabled={true}>
+                    <View style={{ flexDirection: 'row', paddingVertical: 5 , borderBottomWidth: 1}}>
+                    <Text style={{ flex: 1, fontWeight: 'bold' }}>성명</Text>
+                    <Text style={{ flex: 1, fontWeight: 'bold' }}>위치</Text>
+                    <Text style={{ flex: 1, fontWeight: 'bold' }}>마지막 착용 날짜</Text>
+                    </View>
+                    {DUMMY_WATCH_DATA.map((person, index) => (
+                        <View key={index} style={{ flexDirection: 'row', paddingVertical: 5 }}>
+                          <Text style={{ flex: 1 }}>{person.name}</Text>
+                          <Text style={{ flex: 1 }}>{person.location}</Text>
+                          <Text style={{ flex: 1 }}>{person.lastDate}</Text>
+                        </View>
+                    ))}
+                    </ScrollView>
+                  </View>
+                </Card>
+
                 </View>
 
                 {/* 오른쪽 카드 */}
