@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert} from 'react-native';
 
 const HeatIllnessDetailModal = ({ onClose }) => {
   // 위험도 컬러 스타일 지정 함수
-  const riskLevelStyle = (level) => {
+    const riskLevelStyle = (level) => {
     return {
       color:
         level === '위험'
@@ -15,8 +15,39 @@ const HeatIllnessDetailModal = ({ onClose }) => {
           : '#000',
       fontWeight: 'bold',
     };
-  };
+    };
 
+    const [actionInProgress, setActionInProgress] = useState([
+      { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '조치 중', alert: '조치요망' },
+      { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '조치 중', alert: '조치요망' },
+    ]);
+
+    const [actionCompleted, setActionCompleted] = useState([
+      { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '조치 완료' },
+      { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '조치 완료' },
+    ]);
+
+    const handleActionStatusChange = (row, fromTable, toTable) => {
+        if (fromTable === 'inProgress' && toTable === 'completed') {
+          // 조치 중 >> 조치 완료
+          setActionInProgress(actionInProgress.filter((item) => item !== row));
+          setActionCompleted([...actionCompleted, row]);
+        } else if (fromTable === 'completed' && toTable === 'inProgress') {
+          // 조치 완료 >> 조치 중
+          const updatedRow = { ...row, alert: '조치요망' };
+          setActionCompleted(actionCompleted.filter((item) => item !== row));
+          setActionInProgress([...actionInProgress, updatedRow]);
+        }
+    };
+
+    {/*alert 팝업 함수*/}
+    const showAlert = (row) => {
+      Alert.alert(
+        `담당자 ${row.checker}에게 조치 요망 알림을 보냈습니다.`,
+        "",
+        [{ text: "확인", style: "default" }]
+      );
+    };
   return (
       <View style={styles.modalContainer}>
           <View style={styles.rowContainer}>
@@ -33,20 +64,21 @@ const HeatIllnessDetailModal = ({ onClose }) => {
                               <Text style={styles.header}>조치 현황</Text>
                               <Text style={styles.header}>조치 알림</Text>
                             </View>
-                            {[
-                              { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '조치 중', alert: '조치요망' },
-                              { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '조치 완료', alert: '조치요망' },
-                              { name: '', checker: '', temp: '', risk: '주의', status: '', alert: '' },
-                            ].map((row, idx) => (
+                            {actionInProgress.map((row, idx) => (
                               <View key={idx} style={styles.tableRow}>
                                 <Text style={styles.cell}>{row.name}</Text>
                                 <Text style={styles.cell}>{row.checker}</Text>
                                 <Text style={styles.cell}>{row.temp}</Text>
                                 <Text style={[styles.cell, riskLevelStyle(row.risk)]}>{row.risk}</Text>
-                                <Text style={[styles.cell, row.status === '조치 완료' ? styles.done : styles.inProgress]}>
-                                  {row.status}
-                                </Text>
-                                <Text style={styles.cell}>{row.alert}</Text>
+                                <TouchableOpacity
+                                    style={[styles.cell, styles.button]}
+                                    onPress={() => handleActionStatusChange(row, 'inProgress', 'completed')}
+                                >
+                                    <Text style={styles.inprogressBtn}>조치 중</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.cell} onPress={() => showAlert(row)}>
+                                    <Text style={styles.alertButton}>{row.alert}</Text> {/*조치요망 버튼!*/}
+                                </TouchableOpacity>
                               </View>
                             ))}
                         </View>
@@ -63,26 +95,18 @@ const HeatIllnessDetailModal = ({ onClose }) => {
                             <Text style={styles.header}>온열위험도</Text>
                             <Text style={styles.header}>조치 현황</Text>
                           </View>
-                          {[
-                            { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '' },
-                            { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '' },
-                            { name: '', checker: '', temp: '', risk: '주의', status: '' },
-                            { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '' },
-                            { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '' },
-                            { name: '', checker: '', temp: '', risk: '주의', status: '' },
-                            { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '' },
-                            { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '' },
-                            { name: '', checker: '', temp: '', risk: '주의', status: '' },
-                            { name: '박신영', checker: '김민지', temp: '36.5℃', risk: '위험', status: '' },
-                            { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '' },
-                            { name: '', checker: '', temp: '', risk: '주의', status: '' },
-                          ].map((row, idx) => (
+                          {actionCompleted.map((row, idx) => (
                             <View key={idx} style={styles.tableRow}>
                               <Text style={styles.cell}>{row.name}</Text>
                               <Text style={styles.cell}>{row.checker}</Text>
                               <Text style={styles.cell}>{row.temp}</Text>
                               <Text style={[styles.cell, riskLevelStyle(row.risk)]}>{row.risk}</Text>
-                              <Text style={styles.cell}>{row.status}</Text>
+                              <TouchableOpacity
+                                style={[styles.cell, styles.button]}
+                                onPress={() => handleActionStatusChange(row, 'completed', 'inProgress')}
+                              >
+                                <Text style={styles.completeBtn}>조치완료</Text>
+                              </TouchableOpacity>
                             </View>
                           ))}
                         </View>
@@ -134,10 +158,6 @@ tableWrapper: {
   marginBottom: 12,
   overflow: 'hidden',
 },
-closeText: {
-  color: '#333',
-  fontWeight: '600',
-},
 title: {
   fontSize: 16,
   fontWeight: 'bold',
@@ -183,15 +203,24 @@ cell: {
   padding: 6,
   textAlign: 'center',
 },
-done: {
-  backgroundColor: 'rgba(104, 219, 98, 0.5)',
-  borderRadius: 50,
-  marginVertical: 4,
+alertButton: {
+  textDecorationLine: 'underline',
+  textAlign: 'center',
 },
-inProgress: {
+
+inprogressBtn: {
   backgroundColor: 'rgba(217, 217, 217, 0.4)',
   borderRadius: 50,
-  marginVertical: 4,
+  textAlign: 'center',
+  justifyContent: 'center',
+  height:20,
+},
+completeBtn: {
+  backgroundColor:'rgba(104, 219, 98, 0.5)',
+  borderRadius: 50,
+  textAlign: 'center',
+  justifyContent: 'center',
+  height:20,
 },
 notice: {
   marginTop: 10,
