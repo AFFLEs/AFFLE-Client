@@ -176,9 +176,9 @@ const HeatIllnessDetailModal = ({ onClose }) => {
               <Text style={styles.subTitle}>온열질환 위험도</Text>
               <View style={styles.table}>
                 <View style={styles.tableRow}>
-                  <Text style={styles.header}>체감 온도</Text>
-                  <Text style={styles.header}>피부 온도</Text>
-                  <Text style={styles.header}>온열질환 위험도</Text>
+                  <Text style={styles.headerRight}>체감 온도</Text>
+                  <Text style={styles.headerRight}>피부 온도</Text>
+                  <Text style={styles.headerRight}>온열질환 위험도</Text>
                 </View>
                 {[
                   { body: '33~34.9℃', skin: '37.6~38.3℃', risk: '주의' },
@@ -193,7 +193,10 @@ const HeatIllnessDetailModal = ({ onClose }) => {
                 ))}
               </View>
 
-              <Text style={styles.notice}>전체 온열질환 위험도 이상자: <Text style={{ fontWeight: 'bold' }}>3</Text></Text>
+              <View style={styles.notice}>
+                <Text style={ { fontWeight: 'bold'} }>전체 온열질환 위험도 이상자 :</Text>
+                <Text style={{ fontWeight: 'bold', textAlign: 'right', flex: 1, marginRight:10 }}>3</Text>
+              </View>
               <Text style={styles.footnote}>* 온열질환 위험도 주의 이상인 사용자 수입니다.</Text>
             </View>
           </View>
@@ -250,10 +253,16 @@ tableRow: {
   borderColor: '#ccc',
 },
 header: {
-//  flex: 1,
-//  fontWeight: 'bold',
-//  padding: 6,
     fontWeight: 'bold',
+},
+headerRight:{
+    flex: 1,
+    fontWeight: 'bold',
+    padding: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    backgroundColor: '#eee',
 },
 cell: {
   flex: 1,
@@ -280,13 +289,20 @@ completeBtn: {
   height:20,
 },
 notice: {
-  marginTop: 10,
-  fontSize: 14,
+    marginTop: 50,
+    padding:6,
+    fontSize: 14,
+    fontWeight: 'bold',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#DCE3F0',
 },
 footnote: {
   fontSize: 12,
   color: '#888',
   marginBottom: 10,
+  marginTop:10,
 },
 touchableCell: {
     flex: 1,
