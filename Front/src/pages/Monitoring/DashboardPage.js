@@ -6,7 +6,7 @@ import MeterReaderListCard from '../../components/MeterReaderListCard';
 import DashBoardModal from '../../components/DashBoardModal';
 import styles from '../../styles/Monitoring/DashboardPage.styles';
 import HeatIllnessDetailModal from './HeatIllnessDetailModal';
-
+import OnSiteActionDetailModal from './OnSiteActionDetailModal';
 
 const DashBoardPage = () => {
     const DUMMY_MANAGER_DATA = [
@@ -33,14 +33,18 @@ const DashBoardPage = () => {
     const wearingRate = ((wearingCount / totalUsers) * 100).toFixed(1);
 
     const [selectedId, setSelectedId] = useState(0);
-    const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+    const [isHeatIllnessOverlayVisible, setIsHeatIllnessOverlayVisible] = useState(false);
+    const [isFieldActionOverlayVisible, setIsFieldActionOverlayVisible] = useState(false);
 
     const handlePress = (id) => {
         setSelectedId(id);
     };
     //어떤 타입의 모달 열지
-    const toggleOverlay = () => {
-      setIsOverlayVisible(!isOverlayVisible);
+    const toggleHeatIllnessOverlay = () => {
+        setIsHeatIllnessOverlayVisible(!isHeatIllnessOverlayVisible);
+    };
+    const toggleOnSiteActionOverlay = () => {
+        setIsFieldActionOverlayVisible(!isFieldActionOverlayVisible);
     };
     return (
         <>
@@ -90,7 +94,7 @@ const DashBoardPage = () => {
                                 </View>
                             </View>
                         </View>
-                        <TouchableOpacity onPress={toggleOverlay} style={styles.arrowButton}>
+                        <TouchableOpacity onPress={toggleHeatIllnessOverlay} style={styles.arrowButton}>
                             <Text style={styles.arrowText}>{'>'}</Text>
                         </TouchableOpacity>
                     </Card>
@@ -149,7 +153,7 @@ const DashBoardPage = () => {
                                 </View>
                             </View>
                         </View>
-                        <TouchableOpacity onPress={toggleOverlay} style={styles.arrowButton}>
+                        <TouchableOpacity onPress={toggleOnSiteActionOverlay} style={styles.arrowButton}>
                             <Text style={styles.arrowText}>{'>'}</Text>
                         </TouchableOpacity>
                     </Card>
@@ -159,9 +163,14 @@ const DashBoardPage = () => {
             </View>
         </ScrollView>
         {/* 오버레이 */}
-        {isOverlayVisible && (
-            <DashBoardModal onClose={toggleOverlay} visible={isOverlayVisible}>
+        {isHeatIllnessOverlayVisible && (
+            <DashBoardModal onClose={toggleHeatIllnessOverlay} visible={isHeatIllnessOverlayVisible}>
                 <HeatIllnessDetailModal />
+            </DashBoardModal>
+        )}
+        {isFieldActionOverlayVisible && (
+            <DashBoardModal onClose={toggleOnSiteActionOverlay} visible={isFieldActionOverlayVisible}>
+                <OnSiteActionDetailModal />
             </DashBoardModal>
         )}
 
@@ -170,19 +179,3 @@ const DashBoardPage = () => {
 };
 
 export default DashBoardPage;
-
-// 오버레이 스타일
-const overlayStyles = StyleSheet.create({
-    overlayContainer: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        width: Dimensions.get('window').width * 0.8,
-        height: '100%',
-        backgroundColor: 'white',
-        borderLeftWidth: 1,
-        borderLeftColor: '#ccc',
-        elevation: 5,
-        zIndex: 999,
-    },
-});
