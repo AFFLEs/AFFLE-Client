@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/components/Sidebar.styles';
 import MainMenuData from '../datas/MainMenu';
 
-
 const Sidebar = ({navigation, isManager}) => {
     const [expanded, setExpanded] = useState(null); // Track the expanded menu index
 
