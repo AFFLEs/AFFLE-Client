@@ -10,9 +10,19 @@ const Sidebar = ({navigation, isManager}) => {
         setExpanded(expanded === index ? null : index);
     };
 
-    const handleSubItemClick = (routeName) => {
-        navigation.navigate(routeName);
+    const handleMenuClick = (menu, index) => {
+        if (menu.subItems) {
+            // 서브 아이템이 있다면 펼치거나 닫기
+            toggleExpand(index);
+        } else if (menu.routeName) {
+            // 서브 아이템이 없으면 바로 해당 페이지로 이동
+            navigation.navigate(menu.routeName);
+        }
     };
+    const handleSubItemClick = (routeName) => {
+            navigation.navigate(routeName);
+        };
+
 
     const filteredMenuData =
         isManager ? MainMenuData
@@ -26,14 +36,16 @@ const Sidebar = ({navigation, isManager}) => {
                         {/* Main Menu Item */}
                         <TouchableOpacity
                             style={styles.menuItem}
-                            onPress={() => toggleExpand(index)}
+                            onPress={() => handleMenuClick(menu, index)}
                         >
                             <Text style={styles.menuText}>{menu.title}</Text>
-                            <Text style={styles.arrow}>{expanded === index ? '▼' : '▶'}</Text>
+                            {menu.subItems && (
+                                <Text style={styles.arrow}>{expanded === index ? '▼' : '▶'}</Text>
+                            )}
                         </TouchableOpacity>
 
                         {/* Sub Menu Items */}
-                        {expanded === index && (
+                        {expanded === index && menu.subItems && (
                             <View style={styles.subMenu}>
                                 {menu.subItems.map((subItem, subIndex) => (
                                     <TouchableOpacity
