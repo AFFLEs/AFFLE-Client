@@ -23,9 +23,9 @@ const MainMenuData = [
   {
     title: '노인 관리',
     subItems: [
-      { title: '워치 착용 현황 상세 조회', routeName: 'WatchWearingStatus' },
-      { title: '방문 노인 분담표 조회', routeName: 'ElderlyDistributionTable' },
-      { title: '현장 조치 상세 조회 (전체)', routeName: 'OnSiteAction' },
+      { title: '내 담당 노인 정보 조회', routeName: 'MyElderlyInfo' },
+      { title: '담당자별 방문 노인 분담표', routeName: 'AllElderlyInfo' },
+      { title: '워치 착용 현황 및 관리', routeName: 'WatchWearingStatus' },
     ],
   },
   {
