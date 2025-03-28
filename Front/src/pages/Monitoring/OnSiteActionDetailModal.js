@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert} from 'react-native';
 
+
 const OnSiteActionDetailModal = ({ onClose }) => {
     const [actionStatus, setActionStatus] = useState('inProgress');
     const [actionInProgress, setActionInProgress] = useState([
-        { name: '이준호', checker: '홍길동', location: '애월읍 고내리', cause: '낙상사고', detectTime: '2025.03.15 10:00', assignTime: '2025.03.15 10:05' },
+        { name: '이준호', checker: '홍길동', location: '애월읍 고내리', cause: '낙상사고', detectTime: '2025.03.15 10:00', assignTime: '' },
         { name: '박정수', checker: '이민수', location: '애월읍 고내리', cause: '낙상사고', detectTime: '2025.03.16 11:00', assignTime: '2025.03.16 11:05' },
         { name: '장희영', checker: '최수진', location: '애월읍 하가리', cause: '위험 구역', detectTime: '2025.03.17 14:30', assignTime: '2025.03.17 14:35' },
-        { name: '오세영', checker: '김지민', location: '애월읍 하가리', cause: '위험 구역', detectTime: '2025.03.18 09:00', assignTime: '2025.03.18 09:05' },
+        { name: '오세영', checker: '김지민', location: '애월읍 하가리', cause: '위험 구역', detectTime: '2025.03.18 09:00', assignTime: '' },
+        { name: '오세영', checker: '김지민', location: '애월읍 하가리', cause: '위험 구역', detectTime: '2025.03.18 09:00', assignTime: '' },
+        { name: '오세영', checker: '김지민', location: '애월읍 하가리', cause: '위험 구역', detectTime: '2025.03.18 09:00', assignTime: '' },
+        { name: '오세영', checker: '김지민', location: '애월읍 하가리', cause: '위험 구역', detectTime: '2025.03.18 09:00', assignTime: '' },
         { name: '한상민', checker: '박정수', location: '애월읍 고내리', cause: '온열 질환', detectTime: '2025.03.19 13:00', assignTime: '2025.03.19 13:05' },
         { name: '이준호', checker: '홍길동', location: '애월읍 고내리', cause: '낙상사고', detectTime: '2025.03.20 10:30', assignTime: '2025.03.20 10:35' },
         { name: '박정수', checker: '이민수', location: '애월읍 하가리', cause: '위험 구역', detectTime: '2025.03.21 12:30', assignTime: '2025.03.21 12:35' },
@@ -108,8 +112,7 @@ const OnSiteActionDetailModal = ({ onClose }) => {
 
                 {actionStatus === 'inProgress' && (
                     <View>
-                    <Text style={[styles.subTitle, {top:-4}]}>*노인의 이름을 누르면 현황 지도로 위치 파악이 가능합니다.</Text>
-                    <ScrollView style={styles.tableWrapper}>
+                    <Text style={[styles.subTitle, {top:-4, marginBottom: 4}]}>*노인의 이름을 누르면 현황 지도로 위치 파악이 가능합니다.</Text>
                         <View style={styles.table}>
                             <View style={styles.tableRow}>
                                 <TouchableOpacity onPress={() => handleSort('name','inProgress')} style={[styles.touchableCell,styles.nameCell]} >
@@ -131,6 +134,7 @@ const OnSiteActionDetailModal = ({ onClose }) => {
                                     <Text style={styles.header}>담당배정시각</Text>
                                 </TouchableOpacity>
                             </View>
+                            <ScrollView style={styles.tableWrapper}>
                             {sortedInProgressData.map((row, idx) => (
                               <View key={idx} style={styles.tableRow}>
                                 <Text style={[styles.cell, styles.nameCell]}>{row.name}</Text>
@@ -149,15 +153,15 @@ const OnSiteActionDetailModal = ({ onClose }) => {
                                 </Text>
                               </View>
                             ))}
+                            </ScrollView>
                         </View>
-                    </ScrollView>
                   </View>
                 )}
 
                 {actionStatus === 'completed' && (
                     <View>
-                    <Text style={[styles.subTitle, {top:-4}]}>*노인의 이름을 누르면 현황 지도로 위치 파악이 가능합니다.</Text>
-                    <ScrollView style={styles.tableWrapper}>
+                    <Text style={[styles.subTitle, {top:-4, marginBottom: 4}]}>*노인의 이름을 누르면 현황 지도로 위치 파악이 가능합니다.</Text>
+
                         <View style={styles.table}>
                           <View style={styles.tableRow}>
                             <TouchableOpacity onPress={() => handleSort('name','completed')} style={[styles.touchableCell,styles.nameCell]} >
@@ -179,6 +183,7 @@ const OnSiteActionDetailModal = ({ onClose }) => {
                               <Text style={styles.header}>조치완료시각</Text>
                             </TouchableOpacity>
                           </View>
+                          <ScrollView style={styles.tableWrapper}>
                           {sortedCompletedData.map((row, idx) => (
                             <View key={idx} style={styles.tableRow}>
                               <Text style={[styles.cell, styles.nameCell]}>{row.name}</Text>
@@ -197,32 +202,64 @@ const OnSiteActionDetailModal = ({ onClose }) => {
                               </Text>
                             </View>
                           ))}
+                          </ScrollView>
                         </View>
-                    </ScrollView>
                     </View>
                 )}
             </View>
-            <View style={styles.rightColumn}>
-              <Text style={styles.subTitle}>온열질환 위험도</Text>
-              <View style={styles.table}>
-                <View style={styles.tableRow}>
-                  <Text style={styles.headerRight}>체감 온도</Text>
-                  <Text style={styles.headerRight}>피부 온도</Text>
-                  <Text style={styles.headerRight}>온열질환 위험도</Text>
+
+            {actionStatus === 'inProgress' && (
+                <View style={styles.rightColumn}>
+                    <Text style={[styles.title, {marginTop:10}]}>현황 지도</Text>
+                    <Text style={{ marginBottom: 300 }}>지도 들어갈 예정</Text>
+                    <Text style={[styles.title, {marginTop:10, marginBottom:10}]}>담당자 선택 배정</Text>
+                    <View>
+                        <View style={styles.table}>
+                            <View style={[styles.tableRow,]}>
+                                <TouchableOpacity onPress={() => handleSort('name','inProgress')} style={[styles.touchableCell, styles.nameCell]} >
+                                <Text style={styles.header}>성명</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleSort('location','inProgress')} style={[styles.touchableCell,styles.locationCell]}>
+                                    <Text style={styles.header}>위치</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleSort('cause','inProgress')} style={[styles.touchableCell,styles.causeCell]}>
+                                    <Text style={styles.header}>원인</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleSort('detectTime','inProgress')} style={[styles.touchableCell, styles.detectTimeCell]}>
+                                    <Text style={styles.header}>위험감지시각</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleSort('detectTime','inProgress')} style={[styles.touchableCell, styles.detectTimeCell]}>
+                                    <Text style={styles.header}>  </Text>
+                                </TouchableOpacity>
+                            </View>
+                            <ScrollView style={{height:200}}>
+                                {actionInProgress
+                                    .filter(row => !row.assignTime)  // assignTime이 없는 데이터만 필터링
+                                    .map((row, idx) => (
+                                    <View key={idx} style={styles.tableRow}>
+                                        <Text style={[styles.cell, styles.nameCell]}>{row.name}</Text>
+                                        <Text style={[styles.cell, styles.locationCell]}>{row.location}</Text>
+                                        <Text style={[styles.cell, styles.causeCell]}>{row.cause}</Text>
+                                        <Text style={[styles.cell, styles.detectTimeCell]}>
+                                            {row.detectTime.split(' ')[0]}
+                                            {'\n'}
+                                            {row.detectTime.split(' ')[1]}
+                                        </Text>
+                                        <Text style = {styles.detectTimeCell}>검침원 찾기</Text>
+                                    </View>
+                                ))}
+                            </ScrollView>
+                        </View>
+                    </View>
                 </View>
-                {[
-                  { body: '33~34.9℃', skin: '37.6~38.3℃', risk: '주의' },
-                  { body: '35~37.9℃', skin: '38.3~38.9℃', risk: '경고' },
-                  { body: '>38℃', skin: '>40℃', risk: '위험' },
-                ].map((row, idx) => (
-                  <View key={idx} style={styles.tableRow}>
-                    <Text style={styles.cell}>{row.body}</Text>
-                    <Text style={styles.cell}>{row.skin}</Text>
-                    <Text style={styles.cell}>{row.risk}</Text>
-                  </View>
-                ))}
-              </View>
-            </View>
+            )}
+
+
+           {actionStatus === 'completed' && (
+           <View style={styles.rightColumn}>
+             <Text style={[styles.title, {marginTop:10}]}>현황 지도</Text>
+           </View>
+          )}
           </View>
       </View>
     );
@@ -286,13 +323,14 @@ leftColumn: {
 },
 rightColumn: {
   flex: 1,
-  marginLeft:10,
+  marginLeft:15,
 },
 table: {
   borderColor: '#ccc',
   marginBottom: 10,
   width:'100%',
 },
+
 tableRow: {
   flexDirection: 'row',
   borderBottomWidth: 1,
@@ -301,6 +339,7 @@ tableRow: {
 },
 header: {
     fontWeight: 'bold',
+
 },
 headerRight:{
     flex: 1,
@@ -323,7 +362,7 @@ touchableCell: {
     padding: 6,
 },
 nameCell: {
-    width: '11%',  
+    width: '11%',
   },
   checkerCell: {
     width: '11%',
