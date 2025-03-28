@@ -9,7 +9,8 @@ import EnterDangerZone from "../pages/Monitoring/EnterDangerZone";
 import HeatExhaustionOccurence from "../pages/Monitoring/HeatExhaustionOccurence";
 import MeterReaderListPage from "../pages/SystemManage/MeterReaderListPage";
 import ElderlyListPage from "../pages/SystemManage/ElderlyListPage";
-// 노인 관리
+import ManageAssignmentPage from "../pages/SystemManage/ManageAssignmentPage";
+import NoticeManagePage from "../pages/SystemManage/NoticeManagePage";
 import MyElderlyInfoPage from "../pages/ElderlyManagement/MyElderlyInfoPage";
 import AllElderlyInfoPage from "../pages/ElderlyManagement/AllElderlyInfoPage";
 import WatchWearingStatusPage from "../pages/ElderlyManagement/WatchWearingStatusPage";
@@ -49,6 +50,10 @@ export default function MainDrawerNavigator() {
               
             <Drawer.Screen name="MeterReaderList" component={MeterReaderListPage} />
             <Drawer.Screen name="ElderlyList" component={ElderlyListPage} />
+            <Drawer.Screen name="ManageAssignment" component={ManageAssignmentPage} />
+            <Drawer.Screen name="NoticeManage" component={NoticeManagePage} />
+
+
 
             <Drawer.Screen name="MyElderlyInfo" component={MyElderlyInfoPage} />
             <Drawer.Screen name="AllElderlyInfo" component={AllElderlyInfoPage} />
