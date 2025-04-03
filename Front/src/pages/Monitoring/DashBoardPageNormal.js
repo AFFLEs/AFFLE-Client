@@ -7,7 +7,7 @@ import DashBoardModal from '../../components/DashBoardModal';
 import BullentinBoardModal from '../../components/BullentinBoardModal';
 import componentStyles from '../../styles/Monitoring/DashboardPageNormal.styles';
 import styles from '../../styles/Monitoring/DashboardPage.styles';
-import OnSiteActionDetailModal from './OnSiteActionDetailModal';
+import OnSiteActionDetailModalNormal from './OnSiteActionDetailModalNormal';
 import HeatIllnessDetailModal from './HeatIllnessDetailModal'; // Make sure this is imported
 
 const DashBoardPageNormal = () => {
@@ -156,7 +156,6 @@ const DashBoardPageNormal = () => {
                     ))}
                 </ScrollView>
             </View>
-            {renderNoticeModal()}
         </Card>
     );
 
@@ -315,7 +314,7 @@ const DashBoardPageNormal = () => {
             )}
             {isFieldActionOverlayVisible && (
                 <DashBoardModal onClose={toggleOnSiteActionOverlay} visible={isFieldActionOverlayVisible}>
-                    <OnSiteActionDetailModal />
+                    <OnSiteActionDetailModalNormal />
                 </DashBoardModal>
             )}
         </>
