@@ -8,7 +8,7 @@ import BullentinBoardModal from '../../components/BullentinBoardModal';
 import componentStyles from '../../styles/Monitoring/DashboardPageNormal.styles';
 import styles from '../../styles/Monitoring/DashboardPage.styles';
 import OnSiteActionDetailModalNormal from './OnSiteActionDetailModalNormal';
-import HeatIllnessDetailModal from './HeatIllnessDetailModal'; // Make sure this is imported
+import HeatIllnessDetailModalNormal from './HeatIllnessDetailModalNormal'; // Make sure this is imported
 
 const DashBoardPageNormal = () => {
     const DUMMY_MANAGER_DATA = [
@@ -309,7 +309,7 @@ const DashBoardPageNormal = () => {
 
             {isHeatIllnessOverlayVisible && (
                 <DashBoardModal onClose={toggleHeatIllnessOverlay} visible={isHeatIllnessOverlayVisible}>
-                    <HeatIllnessDetailModal />
+                    <HeatIllnessDetailModalNormal />
                 </DashBoardModal>
             )}
             {isFieldActionOverlayVisible && (
