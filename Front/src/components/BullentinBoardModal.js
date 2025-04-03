@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Modal } from 'react-native';
-import styles from '../../styles/Monitoring/BullentinBoardModal.styles';
+import styles from '../styles/Monitoring/BullentinBoardModal.styles';
 
 const BullentinBoardModal = ({ onClose, visible, children }) => {
   return (

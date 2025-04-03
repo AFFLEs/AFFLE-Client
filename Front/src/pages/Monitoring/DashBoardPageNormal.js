@@ -6,7 +6,9 @@ import MeterReaderListCard from '../../components/MeterReaderListCard';
 import DashBoardModal from '../../components/DashBoardModal';
 import BullentinBoardModal from '../../components/BullentinBoardModal';
 import componentStyles from '../../styles/Monitoring/DashboardPageNormal.styles';
+import styles from '../../styles/Monitoring/DashboardPage.styles';
 import OnSiteActionDetailModal from './OnSiteActionDetailModal';
+import HeatIllnessDetailModal from './HeatIllnessDetailModal'; // Make sure this is imported
 
 const DashBoardPageNormal = () => {
     const DUMMY_MANAGER_DATA = [
@@ -18,7 +20,6 @@ const DashBoardPageNormal = () => {
         { manager_id: 5, name: '한예원', status: 2, work_region: '애월읍 고성리', contact: '010-9999-8888' },
     ];
 
-    // 날씨 관련 상태
     const [temperature, setTemperature] = useState(37);
     const [weatherDescription, setWeatherDescription] = useState('맑음');
     const [charEmoji, setCharEmoji] = useState('☀️');
@@ -27,7 +28,6 @@ const DashBoardPageNormal = () => {
     const [windDirection, setWindDirection] = useState('북남');
     const [windSpeed, setWindSpeed] = useState(3);
 
-    // 게시판 관련 상태
     const [notices, setNotices] = useState([
         { id: 1, title: "야외활동자제", content: "예상 기온이 38도를 넘어섭니다. 야외 활동을 자제하세요.", date: "2025-04-03", author: "관리자" },
         { id: 2, title: "태풍주의보", content: "태풍 주의보 발령, 강풍에 유의하세요.", date: "2025-04-02", author: "관리자" },
@@ -40,7 +40,6 @@ const DashBoardPageNormal = () => {
     const [isHeatIllnessOverlayVisible, setIsHeatIllnessOverlayVisible] = useState(false);
     const [isFieldActionOverlayVisible, setIsFieldActionOverlayVisible] = useState(false);
 
-    // 이벤트 핸들러
     const openNoticeModal = (notice) => {
         setSelectedNotice(notice);
         setIsNoticeModalVisible(true);
@@ -68,7 +67,6 @@ const DashBoardPageNormal = () => {
         setIsFieldActionOverlayVisible(!isFieldActionOverlayVisible);
     };
 
-    // 날씨 정보 렌더링
     const renderWeatherInfo = () => (
         <Card title="금일 날씨">
             <View style={componentStyles.weatherMainContainer}>
@@ -112,7 +110,6 @@ const DashBoardPageNormal = () => {
         </Card>
     );
 
-    // 방문 예정 가구 렌더링
     const renderVisitSchedule = () => (
         <Card title="금일 방문 예정 가구">
             <ScrollView horizontal showsHorizontalScrollIndicator={true}>
@@ -131,7 +128,6 @@ const DashBoardPageNormal = () => {
         </Card>
     );
 
-    // 공지사항 렌더링
     const renderNotices = () => (
         <Card title="공지사항" style={{ maxHeight: 150 }}>
             <View style={{ height: 300 }}>
@@ -164,72 +160,6 @@ const DashBoardPageNormal = () => {
         </Card>
     );
 
-    // 공지사항 모달 렌더링
-    const renderNoticeModal = () => (
-        isNoticeModalVisible && selectedNotice && (
-            <BullentinBoardModal onClose={closeNoticeModal} visible={isNoticeModalVisible}>
-                <View style={componentStyles.modalContainer}>
-                    <Text style={componentStyles.modalTitle}>
-                        공지사항 상세 조회
-                    </Text>
-
-                    <View style={componentStyles.modalContent}>
-                        {/* 제목 행 */}
-                        <View style={componentStyles.modalRow}>
-                            <View style={componentStyles.modalLabel}>
-                                <Text style={componentStyles.modalLabelText}>제목</Text>
-                            </View>
-                            <View style={componentStyles.modalValue}>
-                                <Text>{selectedNotice.title}</Text>
-                            </View>
-                        </View>
-
-                        {/* 작성자 및 등록일시 행 */}
-                        <View style={componentStyles.modalRow}>
-                            <View style={componentStyles.modalLabel}>
-                                <Text style={componentStyles.modalLabelText}>작성자</Text>
-                            </View>
-                            <View style={componentStyles.modalAuthorValue}>
-                                <Text>{selectedNotice.author}</Text>
-                            </View>
-                            <View style={componentStyles.modalLabel}>
-                                <Text style={componentStyles.modalLabelText}>등록일시</Text>
-                            </View>
-                            <View style={componentStyles.modalValue}>
-                                <Text>{selectedNotice.date}</Text>
-                            </View>
-                        </View>
-
-                        {/* 첨부파일 행 */}
-                        <View style={componentStyles.modalRow}>
-                            <View style={componentStyles.modalLabel}>
-                                <Text style={componentStyles.modalLabelText}>첨부파일</Text>
-                            </View>
-                            <View style={componentStyles.modalValue}>
-                                {selectedNotice.file ? (
-                                    <Text
-                                        onPress={() => selectedNotice.fileUrl ? handleFileOpen(selectedNotice.fileUrl) : null}
-                                        style={componentStyles.fileLink}
-                                    >
-                                        {selectedNotice.fileName ? selectedNotice.fileName : "첨부파일 없음"}
-                                    </Text>
-                                ) : (
-                                    <Text>첨부파일 없음</Text>
-                                )}
-                            </View>
-                        </View>
-
-                        {/* 내용 행 */}
-                        <View style={componentStyles.contentContainer}>
-                            <Text style={componentStyles.contentText}>{selectedNotice.content}</Text>
-                        </View>
-                    </View>
-                </View>
-            </BullentinBoardModal>
-        )
-    );
-
-    // 현장조치 발생 현황 렌더링
     const renderFieldActions = () => (
         <Card title="현장조치 발생 현황">
             <View style={componentStyles.fieldStatusContainer}>
@@ -255,10 +185,44 @@ const DashBoardPageNormal = () => {
         </Card>
     );
 
-    // 지도 렌더링
     const renderMap = () => (
         <Card title="지도">
             {/* 지도 내용 */}
+            <Text>지도가 이곳에 표시됩니다</Text>
+        </Card>
+    );
+
+    // Heat illness rendering
+    const renderHeatIllness = () => (
+        <Card title="온열질환 경고 알림 현황">
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingVertical: 10 }}>
+                {/* 주의 카드 */}
+                <View style={{ backgroundColor: '#FF9C00', flex: 1, padding: 10, marginRight: 5, borderRadius: 8 }}>
+                    <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 18 }}>주의</Text>
+                    <View style={{ alignItems: 'flex-end' }}>
+                        <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 18 }}>4</Text>
+                    </View>
+                </View>
+
+                {/* 경고 카드 */}
+                <View style={{ backgroundColor: '#FF5F00', flex: 1, padding: 10, marginRight: 5, borderRadius: 8 }}>
+                    <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 18 }}>경고</Text>
+                    <View style={{ alignItems: 'flex-end' }}>
+                        <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 18 }}>4</Text>
+                    </View>
+                </View>
+
+                {/* 위험 카드 */}
+                <View style={{ backgroundColor: '#FF0716', flex: 1, padding: 10, borderRadius: 8 }}>
+                    <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 18 }}>위험</Text>
+                    <View style={{ alignItems: 'flex-end' }}>
+                        <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 18 }}>4</Text>
+                    </View>
+                </View>
+            </View>
+            <TouchableOpacity onPress={toggleHeatIllnessOverlay} style={styles.arrowButton}>
+                <Text style={styles.arrowText}>{'>'}</Text>
+            </TouchableOpacity>
         </Card>
     );
 
@@ -276,12 +240,74 @@ const DashBoardPageNormal = () => {
                     {/* 오른쪽 카드 */}
                     <View style={styles.rightCards}>
                         {renderFieldActions()}
+                        {renderHeatIllness()}
                         {renderMap()}
                     </View>
                 </View>
             </ScrollView>
 
-            {/* 오버레이 모달 */}
+            <BullentinBoardModal onClose={closeNoticeModal} visible={isNoticeModalVisible} animationType="none">
+                {selectedNotice && (
+                    <View style={componentStyles.modalContainer}>
+                        <Text style={componentStyles.modalTitle}>
+                            공지사항 상세 조회
+                        </Text>
+
+                        <View style={componentStyles.modalContent}>
+                            {/* 제목 행 */}
+                            <View style={componentStyles.modalRow}>
+                                <View style={componentStyles.modalLabel}>
+                                    <Text style={componentStyles.modalLabelText}>제목</Text>
+                                </View>
+                                <View style={componentStyles.modalValue}>
+                                    <Text>{selectedNotice.title}</Text>
+                                </View>
+                            </View>
+
+                            {/* 작성자 및 등록일시 행 */}
+                            <View style={componentStyles.modalRow}>
+                                <View style={componentStyles.modalLabel}>
+                                    <Text style={componentStyles.modalLabelText}>작성자</Text>
+                                </View>
+                                <View style={componentStyles.modalAuthorValue}>
+                                    <Text>{selectedNotice.author}</Text>
+                                </View>
+                                <View style={componentStyles.modalLabel}>
+                                    <Text style={componentStyles.modalLabelText}>등록일시</Text>
+                                </View>
+                                <View style={componentStyles.modalValue}>
+                                    <Text>{selectedNotice.date}</Text>
+                                </View>
+                            </View>
+
+                            {/* 첨부파일 행 */}
+                            <View style={componentStyles.modalRow}>
+                                <View style={componentStyles.modalLabel}>
+                                    <Text style={componentStyles.modalLabelText}>첨부파일</Text>
+                                </View>
+                                <View style={componentStyles.modalValue}>
+                                    {selectedNotice.file ? (
+                                        <Text
+                                            onPress={() => selectedNotice.fileUrl ? handleFileOpen(selectedNotice.fileUrl) : null}
+                                            style={componentStyles.fileLink}
+                                        >
+                                            {selectedNotice.fileName ? selectedNotice.fileName : "첨부파일 없음"}
+                                        </Text>
+                                    ) : (
+                                        <Text>첨부파일 없음</Text>
+                                    )}
+                                </View>
+                            </View>
+
+                            {/* 내용 행 */}
+                            <View style={componentStyles.contentContainer}>
+                                <Text style={componentStyles.contentText}>{selectedNotice.content}</Text>
+                            </View>
+                        </View>
+                    </View>
+                )}
+            </BullentinBoardModal>
+
             {isHeatIllnessOverlayVisible && (
                 <DashBoardModal onClose={toggleHeatIllnessOverlay} visible={isHeatIllnessOverlayVisible}>
                     <HeatIllnessDetailModal />

@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
-const styles = {
+const styles =StyleSheet.create( {
   overlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
@@ -85,5 +85,5 @@ const styles = {
     fontSize: 14,
     lineHeight: 20,
   },
-};
+});
 export default styles;

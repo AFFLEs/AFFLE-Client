@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const componentStyles = {
+const componentStyles = StyleSheet.create({
     // 날씨
     weatherMainContainer: {
         flexDirection: 'row',
@@ -164,6 +164,6 @@ const componentStyles = {
         fontSize: 18,
         marginRight: 5
     }
-};
+});
 
 export default componentStyles;
