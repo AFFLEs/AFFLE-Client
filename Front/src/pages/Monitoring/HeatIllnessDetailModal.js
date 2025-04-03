@@ -27,10 +27,8 @@ const HeatIllnessDetailModal = ({ onClose }) => {
       { name: '김기민', checker: '한원예', temp: '36.5℃', risk: '경고', status: '조치 완료' , createDate: '2025-02-26'},
     ]);
 
-    {/*표 정렬*/}
-        {/*조치 중*/}
+    {/*표 정렬 관련 상태 - 순서대로 조치중 & 조치 완료*/ }
     const [inProgressSortConfig, setInProgressSortConfig] = useState({ key: 'createDate', direction: 'asc' });
-        {/*조치 완료*/}
     const [completedSortConfig, setCompletedSortConfig] = useState({ key: 'createDate', direction: 'asc' });
 
     const sortData = (data, sortConfig) => {
@@ -62,14 +60,12 @@ const HeatIllnessDetailModal = ({ onClose }) => {
     const sortedInProgressData = sortData(actionInProgress, inProgressSortConfig);
     const sortedCompletedData = sortData(actionCompleted, completedSortConfig);
 
-    {/*조치중 조치완료 표 interaction*/}
+    {/*조치중 조치완료 표 interaction : 조치 중 >> 조치 완료 && 조치완료 >> 조치 중 */}
     const handleActionStatusChange = (row, fromTable, toTable) => {
         if (fromTable === 'inProgress' && toTable === 'completed') {
-          // 조치 중 >> 조치 완료
           setActionInProgress(actionInProgress.filter((item) => item !== row));
           setActionCompleted([...actionCompleted, row]);
         } else if (fromTable === 'completed' && toTable === 'inProgress') {
-          // 조치 완료 >> 조치 중
           const updatedRow = { ...row, alert: '조치요망' };
           setActionCompleted(actionCompleted.filter((item) => item !== row));
           setActionInProgress([...actionInProgress, updatedRow]);
@@ -125,7 +121,7 @@ const HeatIllnessDetailModal = ({ onClose }) => {
                                     <Text style={styles.inprogressBtn}>조치 중</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.cell} onPress={() => showAlert(row)}>
-                                    <Text style={styles.alertButton}>{row.alert}</Text> {/*조치요망 버튼!*/}
+                                    <Text style={styles.alertButton}>{row.alert}</Text>
                                 </TouchableOpacity>
                               </View>
                             ))}
@@ -173,7 +169,7 @@ const HeatIllnessDetailModal = ({ onClose }) => {
 
             {/* 오른쪽 열 (온열질환 위험도와 관련된 나머지 표들) */}
             <View style={styles.rightColumn}>
-              <Text style={styles.subTitle}>온열질환 위험도</Text>
+              <Text style={styles.title}>온열질환 위험도</Text>
               <View style={styles.table}>
                 <View style={styles.tableRow}>
                   <Text style={styles.headerRight}>체감 온도</Text>
@@ -194,7 +190,7 @@ const HeatIllnessDetailModal = ({ onClose }) => {
               </View>
 
               <View style={styles.notice}>
-                <Text style={ { fontWeight: 'bold'} }>전체 온열질환 위험도 이상자 :</Text>
+                <Text style={styles.title}>전체 온열질환 위험도 이상자 :</Text>
                 <Text style={{ fontWeight: 'bold', textAlign: 'right', flex: 1, marginRight:10 }}>3</Text>
               </View>
               <Text style={styles.footnote}>* 온열질환 위험도 주의 이상인 사용자 수입니다.</Text>
