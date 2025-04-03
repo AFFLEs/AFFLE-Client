@@ -1,6 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import DashBoardPage from '../pages/Monitoring/DashboardPage';
+import DashBoardPageNormal from '../pages/Monitoring/DashBoardPageNormal';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import SOSCallPage from "../pages/Monitoring/SOSCallPage";
@@ -36,7 +37,11 @@ export default function MainDrawerNavigator() {
             drawerContent={(props) => <Sidebar {...props} isManager={DUMMY_USER_INFO.isManager} />} // 커스텀 사이드바 추가
         >
 
+            {/*
             <Drawer.Screen name="Dashboard" component={DashBoardPage} />
+            */}
+            <Drawer.Screen name="Dashboard" component={DashBoardPageNormal} />
+
             <Drawer.Screen name="SOSCall" component={SOSCallPage} />
             
             {/* 낙상 발생 현황 및 조치 */}

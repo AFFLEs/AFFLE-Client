@@ -11,6 +11,8 @@ const ElderlyListCard = ({ elderly, selected, onPress }) => {
                 {elderly.name} <Text style={styles.age}>{elderly.gender} | {elderly.age}세</Text>
             </Text>
             <Text style={styles.info}>{elderly.region}</Text>
+            <Text style={styles.info}>최근 방문 일자: {elderly.recentVisit}</Text>
+            <Text style={styles.info}>특징: {elderly.feature}</Text>
             <Text style={styles.info}>구분: {elderly.category}</Text>
         </TouchableOpacity>
     );

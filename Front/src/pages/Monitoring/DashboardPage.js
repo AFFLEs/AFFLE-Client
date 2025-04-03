@@ -98,38 +98,33 @@ const DashBoardPage = () => {
                             <Text style={styles.arrowText}>{'>'}</Text>
                         </TouchableOpacity>
                     </Card>
-
-
-                <Card title="스마트워치 착용 현황" style={{maxHeight:150}}>
-                  <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
-                    <Text style={{ flex: 1, fontWeight: 'bold' ,fontSize:15}}>위치 착용</Text>
-                    <Text style={{ flex: 1, fontWeight: 'bold' , fontSize:15, textAlign:'right'}}>{`${wearingCount} / ${totalUsers}명`}</Text>
-                    <View style={{paddingHorizontal:10}}></View>
-                    <Text style={{ flex: 1, fontWeight: 'bold', fontSize:15 }}>착용률</Text>
-                    <Text style={{ flex: 1, fontWeight: 'bold' , fontSize:15, textAlign:'right'}}>{`${wearingRate}%`}</Text>
-                  </View>
-                  <Text style={{ marginTop: 10, fontWeight: 'bold' }}>워치 미착용자 목록</Text>
-                  {/* ScrollView로 세로 스크롤 가능하게 만들기 */}
-                  <View style={{height:150 }}>
-                    <ScrollView style={styles.watchScrollContainer}
-                        contentContainerStyle={styles.watchScrollContent}
-                        showsVerticalScrollIndicator={true}
-                        nestedScrollEnabled={true}>
-                    <View style={{ flexDirection: 'row', paddingVertical: 5 , borderBottomWidth: 1}}>
-                    <Text style={{ flex: 1, fontWeight: 'bold' }}>성명</Text>
-                    <Text style={{ flex: 1, fontWeight: 'bold' }}>위치</Text>
-                    <Text style={{ flex: 1, fontWeight: 'bold' }}>마지막 착용 날짜</Text>
-                    </View>
-                    {DUMMY_WATCH_DATA.map((person, index) => (
-                        <View key={index} style={{ flexDirection: 'row', paddingVertical: 5 }}>
-                          <Text style={{ flex: 1 }}>{person.name}</Text>
-                          <Text style={{ flex: 1 }}>{person.location}</Text>
-                          <Text style={{ flex: 1 }}>{person.lastDate}</Text>
+                    <Card title="스마트워치 착용 현황" style={{maxHeight:150}}>
+                      <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
+                        <Text style={{ flex: 1, fontWeight: 'bold' ,fontSize:15}}>위치 착용</Text>
+                        <Text style={{ flex: 1, fontWeight: 'bold' , fontSize:15, textAlign:'right'}}>{`${wearingCount} / ${totalUsers}명`}</Text>
+                        <View style={{paddingHorizontal:10}}></View>
+                        <Text style={{ flex: 1, fontWeight: 'bold', fontSize:15 }}>착용률</Text>
+                        <Text style={{ flex: 1, fontWeight: 'bold' , fontSize:15, textAlign:'right'}}>{`${wearingRate}%`}</Text>
+                      </View>
+                      <Text style={{ marginTop: 10, fontWeight: 'bold' }}>워치 미착용자 목록</Text>
+                      {/* ScrollView로 세로 스크롤 가능하게 만들기 */}
+                      <View style={{height:150 }}>
+                        <View style={{ flexDirection: 'row', paddingVertical: 5 , borderBottomWidth: 1}}>
+                            <Text style={{ flex: 1, fontWeight: 'bold' }}>성명</Text>
+                            <Text style={{ flex: 1, fontWeight: 'bold' }}>위치</Text>
+                            <Text style={{ flex: 1, fontWeight: 'bold' }}>마지막 착용 날짜</Text>
                         </View>
-                    ))}
-                    </ScrollView>
-                  </View>
-                </Card>
+                        <ScrollView style={styles.watchScrollContainer} contentContainerStyle={styles.watchScrollContent} showsVerticalScrollIndicator={true} nestedScrollEnabled={true}>
+                            {DUMMY_WATCH_DATA.map((person, index) => (
+                                <View key={index} style={{ flexDirection: 'row', paddingVertical: 5 }}>
+                                  <Text style={{ flex: 1 }}>{person.name}</Text>
+                                  <Text style={{ flex: 1 }}>{person.location}</Text>
+                                  <Text style={{ flex: 1 }}>{person.lastDate}</Text>
+                                </View>
+                            ))}
+                        </ScrollView>
+                      </View>
+                    </Card>
 
                 </View>
 

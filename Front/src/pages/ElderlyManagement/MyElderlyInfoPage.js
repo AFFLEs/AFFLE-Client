@@ -6,7 +6,7 @@ import HealthStatusCard from '../../components/HealthStatusCard';
 import SearchInput from '../../components/SearchInput';
 import SortButton from '../../components/SortButton';
 
-const originalElderlyData = [
+export const originalElderlyData = [
   {
     name: '김기민',
     gender: '남성',
