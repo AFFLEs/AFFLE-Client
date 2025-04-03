@@ -1,6 +1,13 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 const componentStyles = StyleSheet.create({
+    list: {
+        flexDirection: 'row',
+    },
+    listItem: {
+        marginRight: 8, // 카드 간 간격을 줄임 (기존 16에서 8로 변경)
+        alignItems: 'center',
+    },
     // 날씨
     weatherMainContainer: {
         flexDirection: 'row',
@@ -11,7 +18,7 @@ const componentStyles = StyleSheet.create({
     weatherInfoBox: {
         flex: 1,
         padding: 10,
-        marginRight: 10,
+        marginHorizontal:5,
         borderRadius: 8,
         borderColor: '#BEBEBE',
         borderWidth: 1

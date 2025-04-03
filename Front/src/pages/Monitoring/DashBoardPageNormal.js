@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Linking } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import Card from "../../components/Card";
-import MeterReaderListCard from '../../components/MeterReaderListCard';
+import ElderlyListCard from '../../components/ElderlyListCard';
 import DashBoardModal from '../../components/DashBoardModal';
 import BullentinBoardModal from '../../components/BullentinBoardModal';
 import componentStyles from '../../styles/Monitoring/DashboardPageNormal.styles';
 import styles from '../../styles/Monitoring/DashboardPage.styles';
 import OnSiteActionDetailModalNormal from './OnSiteActionDetailModalNormal';
 import HeatIllnessDetailModalNormal from './HeatIllnessDetailModalNormal'; // Make sure this is imported
+import { originalElderlyData } from '../ElderlyManagement/MyElderlyInfoPage';
 
 const DashBoardPageNormal = () => {
     const DUMMY_MANAGER_DATA = [
@@ -110,23 +111,41 @@ const DashBoardPageNormal = () => {
         </Card>
     );
 
-    const renderVisitSchedule = () => (
-        <Card title="금일 방문 예정 가구">
-            <ScrollView horizontal showsHorizontalScrollIndicator={true}>
-                <View style={styles.list}>
-                    {DUMMY_MANAGER_DATA.map((manager) => (
-                        <View style={styles.listItem} key={manager.manager_id}>
-                            <MeterReaderListCard
-                                manager={manager}
-                                selected={selectedId === manager.manager_id}
-                                onPress={() => handlePress(manager.manager_id)}
-                            />
-                        </View>
-                    ))}
-                </View>
-            </ScrollView>
-        </Card>
-    );
+    const renderVisitSchedule = () => {
+        const navigation = useNavigation();
+
+        const handlePress = (elderly) => {
+            // 노인 선택 시 MyElderlyInfoPage로 이동
+            navigation.navigate('MyElderlyInfo', { elderly });
+        };
+
+        return (
+            <Card title="금일 방문 예정 가구">
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    <View style={componentStyles.list}>
+                        {originalElderlyData.map((elderly, index) => (
+                            <View style={componentStyles.listItem} key={index}>
+                                <ElderlyListCard
+                                    elderly={{
+                                        name: elderly.name,
+                                        gender: elderly.gender,
+                                        age: elderly.age,
+                                        region: `${elderly.address.split(' ')[2]} ${elderly.address.split(' ')[3]}`, // @@읍 @@길까지만 표시
+                                        recentVisit: elderly.recentVisit,
+                                        feature: elderly.type, // 특징 추가 (치매질환 등) 근데 myelderly에 없는 정보임.
+                                    }}
+                                    selected={selectedId === index}
+                                    onPress={() => handlePress(elderly)} 
+                                />
+                            </View>
+                        ))}
+                    </View>
+                </ScrollView>
+            </Card>
+        );
+    };
+
+
 
     const renderNotices = () => (
         <Card title="공지사항" style={{ maxHeight: 150 }}>
