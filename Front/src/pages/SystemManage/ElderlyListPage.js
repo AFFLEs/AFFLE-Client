@@ -161,8 +161,120 @@ const ElderlyListPage = () => {
                 contact: "010-1234-1234",
             },
         },
-
-
+        {
+            elderly_id: 8,
+            name: "김민지",
+            gender: "여성",
+            age: 87,
+            recent_visit_date: "24.10.24",
+            next_visit_date: "24.12.02",
+            contact: "010-1234-1234",
+            category: "독거 노인",
+            region: "애월읍 애월리",
+            address: "제주특별자치도 제주시 애월읍 곽지11길 27",
+            manager: {
+                name: "김지민",
+                gender: "여성",
+                age: 74,
+                work_region: "애월읍 애월리",
+                contact: "010-1234-1234",
+            },
+        },
+        {
+            elderly_id: 9,
+            name: "김민지",
+            gender: "여성",
+            age: 87,
+            recent_visit_date: "24.10.24",
+            next_visit_date: "24.12.02",
+            contact: "010-1234-1234",
+            category: "독거 노인",
+            region: "애월읍 애월리",
+            address: "제주특별자치도 제주시 애월읍 곽지11길 27",
+            manager: {
+                name: "김지민",
+                gender: "여성",
+                age: 74,
+                work_region: "애월읍 애월리",
+                contact: "010-1234-1234",
+            },
+        },
+        {
+            elderly_id: 10,
+            name: "김민지",
+            gender: "여성",
+            age: 87,
+            recent_visit_date: "24.10.24",
+            next_visit_date: "24.12.02",
+            contact: "010-1234-1234",
+            category: "독거 노인",
+            region: "애월읍 애월리",
+            address: "제주특별자치도 제주시 애월읍 곽지11길 27",
+            manager: {
+                name: "김지민",
+                gender: "여성",
+                age: 74,
+                work_region: "애월읍 애월리",
+                contact: "010-1234-1234",
+            },
+        },
+        {
+            elderly_id: 11,
+            name: "김민지",
+            gender: "여성",
+            age: 87,
+            recent_visit_date: "24.10.24",
+            next_visit_date: "24.12.02",
+            contact: "010-1234-1234",
+            category: "독거 노인",
+            region: "애월읍 애월리",
+            address: "제주특별자치도 제주시 애월읍 곽지11길 27",
+            manager: {
+                name: "김지민",
+                gender: "여성",
+                age: 74,
+                work_region: "애월읍 애월리",
+                contact: "010-1234-1234",
+            },
+        },
+        {
+            elderly_id: 12,
+            name: "김민지",
+            gender: "여성",
+            age: 87,
+            recent_visit_date: "24.10.24",
+            next_visit_date: "24.12.02",
+            contact: "010-1234-1234",
+            category: "독거 노인",
+            region: "애월읍 애월리",
+            address: "제주특별자치도 제주시 애월읍 곽지11길 27",
+            manager: {
+                name: "김지민",
+                gender: "여성",
+                age: 74,
+                work_region: "애월읍 애월리",
+                contact: "010-1234-1234",
+            },
+        },
+        {
+            elderly_id: 13,
+            name: "김민지",
+            gender: "여성",
+            age: 87,
+            recent_visit_date: "24.10.24",
+            next_visit_date: "24.12.02",
+            contact: "010-1234-1234",
+            category: "독거 노인",
+            region: "애월읍 애월리",
+            address: "제주특별자치도 제주시 애월읍 곽지11길 27",
+            manager: {
+                name: "김지민",
+                gender: "여성",
+                age: 74,
+                work_region: "애월읍 애월리",
+                contact: "010-1234-1234",
+            },
+        },
     ];
     const DUMMY_ELDERLY_STATUS_LIST = [
         {
@@ -223,6 +335,54 @@ const ElderlyListPage = () => {
         },
         {
             elderly_id: 7,
+            status: [
+                { type: "체온", status: "정상", color: "green" },
+                { type: "심박수", status: "경고", color: "yellow" },
+                { type: "위치 착용", status: "완료", color: "green" },
+            ],
+        },
+        {
+            elderly_id: 8,
+            status: [
+                { type: "체온", status: "정상", color: "green" },
+                { type: "심박수", status: "경고", color: "yellow" },
+                { type: "위치 착용", status: "완료", color: "green" },
+            ],
+        },
+        {
+            elderly_id: 9,
+            status: [
+                { type: "체온", status: "정상", color: "green" },
+                { type: "심박수", status: "경고", color: "yellow" },
+                { type: "위치 착용", status: "완료", color: "green" },
+            ],
+        },
+        {
+            elderly_id: 10,
+            status: [
+                { type: "체온", status: "정상", color: "green" },
+                { type: "심박수", status: "경고", color: "yellow" },
+                { type: "위치 착용", status: "완료", color: "green" },
+            ],
+        },
+        {
+            elderly_id: 11,
+            status: [
+                { type: "체온", status: "정상", color: "green" },
+                { type: "심박수", status: "경고", color: "yellow" },
+                { type: "위치 착용", status: "완료", color: "green" },
+            ],
+        },
+        {
+            elderly_id: 12,
+            status: [
+                { type: "체온", status: "정상", color: "green" },
+                { type: "심박수", status: "경고", color: "yellow" },
+                { type: "위치 착용", status: "완료", color: "green" },
+            ],
+        },
+        {
+            elderly_id: 13,
             status: [
                 { type: "체온", status: "정상", color: "green" },
                 { type: "심박수", status: "경고", color: "yellow" },
@@ -300,23 +460,21 @@ const ElderlyListPage = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             {/* 노인 목록 */}
             <View style={styles.leftCards}>
                 <Card
                     title="🏠 노인 목록"
                 >
-                    <ScrollView>
-                        <View style={styles.list}>
-                            {elderlyInfoList.map((elderly, index) => (
-                                <ElderlyListCard
-                                    key={elderly.elderly_id}
-                                    elderly = {elderly}
-                                    selected={selectedId === elderly.elderly_id}
-                                    onPress={() => handlePress(elderly.elderly_id)}
-                                />
-                            ))}
-                        </View>
+                    <ScrollView style={{ maxHeight: 500 }} contentContainerStyle={styles.list}>
+                        {elderlyInfoList.map((elderly, index) => (
+                            <ElderlyListCard
+                                key={elderly.elderly_id}
+                                elderly = {elderly}
+                                selected={selectedId === elderly.elderly_id}
+                                onPress={() => handlePress(elderly.elderly_id)}
+                            />
+                        ))}
                     </ScrollView>
 
                     <TouchableOpacity style={styles.Button} onPress={handleRegister}>
@@ -350,7 +508,7 @@ const ElderlyListPage = () => {
                 </Card>
             </View>
 
-        </View>
+        </ScrollView>
     );
 };
 

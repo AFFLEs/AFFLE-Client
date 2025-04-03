@@ -1,6 +1,4 @@
 // 메뉴 데이터 정의
-import ElderlyListPage from "../pages/SystemManage/ElderlyListPage";
-
 const MainMenuData = [
   {
     title: '대시보드',
@@ -9,15 +7,14 @@ const MainMenuData = [
   {
     title: '온열 질환 관리',
     subItems: [
-      { title: '날씨 현황', routeName: 'WeatherStatus' },
-      { title: '미정', routeName: 'SignupPage' },
+      { title: '온열 발생 현황 및 조치', routeName: 'HeatExhaustionOccurence' },
     ],
   },
   {
     title: '위험 구역 관리',
     subItems: [
-      { title: '위험 지역 목록', routeName: 'DangerZoneList' },
-      { title: '미정', routeName: 'None' },
+      { title: '위험 지역 목록', routeName: 'EnterDangerZone' },
+      { title: '낙상 발생 현황 및 조치', routeName: 'FallOccurrence' },
     ],
   },
   {

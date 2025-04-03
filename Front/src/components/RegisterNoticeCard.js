@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import DocumentPicker from 'react-native-document-picker';
 import styles from '../styles/SystemManage/RegisterNoticeCard.styles';
 
 const RegisterNoticeCard = ({ target, onTargetChange, onRegisterComplete }) => {
@@ -9,8 +10,20 @@ const RegisterNoticeCard = ({ target, onTargetChange, onRegisterComplete }) => {
     const [fileName, setFileName] = useState('');
 
     // 첨부파일 추가
-    const handleFilePick = () => {
-        setFileName('선택된_파일명.jpg');
+    const handleFilePick = async () => {
+        try {
+            const res = await DocumentPicker.pickSingle({
+                type: [DocumentPicker.types.allFiles], // 이미지, PDF, 한글 등 모든 파일 가능
+            });
+            setFileName(res.name); // 파일명 표시
+            console.log('선택된 파일:', res);
+        } catch (err) {
+            if (DocumentPicker.isCancel(err)) {
+                console.log('파일 선택이 취소되었습니다.');
+            } else {
+                console.error('파일 선택 오류:', err);
+            }
+        }
     };
 
     // 등록하기

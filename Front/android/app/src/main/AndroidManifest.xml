@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
       android:name=".MainApplication"
@@ -10,13 +11,13 @@
       android:allowBackup="false"
       android:theme="@style/AppTheme"
       android:supportsRtl="true">
-      
+
       <!-- ✅ Google Maps API Key 추가 -->
       <meta-data
           android:name="com.google.android.geo.API_KEY"
           android:value="AIzaSyBzeVyD7PoYcUp6Myez5CSKQ29tt7PS5-o"/>
-      
-      
+
+
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
