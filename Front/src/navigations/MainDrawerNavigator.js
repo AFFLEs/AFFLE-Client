@@ -4,6 +4,7 @@ import DashBoardPage from '../pages/Monitoring/DashboardPage';
 import DashBoardPageNormal from '../pages/Monitoring/DashBoardPageNormal';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
+import { useRouter } from '../components/RouterContext';
 import SOSCallPage from "../pages/Monitoring/SOSCallPage";
 import FallOccurrence from "../pages/Monitoring/FallOccurrence";
 import EnterDangerZone from "../pages/Monitoring/EnterDangerZone";
@@ -19,6 +20,7 @@ import WatchWearingStatusPage from "../pages/ElderlyManagement/WatchWearingStatu
 const Drawer = createDrawerNavigator();
 
 export default function MainDrawerNavigator() {
+  const { setCurrentRoute } = useRouter();
 
     const DUMMY_USER_INFO = {
         name: '한예원',
