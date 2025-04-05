@@ -59,7 +59,10 @@ const AllElderlyInfoPage = () => {
   );
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={styles.container}
+    >
       <Card title="🗂 담당자별 방문 노인 분담표">
           <SearchInput
             value={searchKeyword}
