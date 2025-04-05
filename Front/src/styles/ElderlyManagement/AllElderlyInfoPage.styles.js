@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
-    paddingHorizontal: 30,
+    flex: 1,
+    padding: 15,
     backgroundColor: '#F4F6FA',
   },
   titleRow: {
@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 14,
+    marginRight: 28,
   },
   cardTitle: {
     fontSize: 20,
@@ -21,6 +22,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+    alignSelf: 'flex-end',
+    marginBottom: 6,
   },
   grid: {
     flexDirection: 'row',

@@ -2,27 +2,35 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 30,
-    paddingVertical: 20,
+     flex: 1,
+     padding: 15,
     backgroundColor: '#F4F6FA',
   },
+
   titleRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 16,
   },
+
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#1C1F23',
   },
+
+  searchInputTop: {
+    width: 220,
+  },
+
   statusTabs: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
     gap: 12,
+    marginBottom: 12,
   },
+
   tab: {
     flex: 1,
     paddingVertical: 16,
@@ -32,6 +40,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
   },
+
+    grid: {
+      flexWrap: 'wrap',
+      justifyContent: 'flex-start',
+      padding: 28,
+    },
+
   red: {
     backgroundColor: '#E55733',
   },
@@ -41,55 +56,77 @@ const styles = StyleSheet.create({
   green: {
     backgroundColor: '#43A363',
   },
+
   selected: {
     borderWidth: 2,
     borderColor: '#333',
   },
+
   tabText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#000000',
   },
+
   tabCount: {
     fontSize: 25,
     fontWeight: 'bold',
     color: '#000000',
   },
-  elderlyList: {
-    gap: 14,
+
+  alertButtonWrapper: {
+    alignItems: 'flex-end',
+    marginBottom: 16,
   },
+
+  alertButtonGlobal: {
+    backgroundColor: '#4369A3',
+    width: 150,
+    height: 35,
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  alertButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+
+  elderlyListGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+
   elderCard: {
-    backgroundColor: '#EDF2F6',
-    padding: 16,
+    width: '49%',
+    padding: 12,
+    borderWidth: 1,
+    borderColor: '#ddd',
     borderRadius: 8,
+    backgroundColor: '#f9f9f9',
   },
+
   elderName: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 4,
   },
+
   elderSub: {
     fontSize: 14,
     color: '#444',
     marginBottom: 4,
   },
+
   elderDetail: {
     fontSize: 13,
     color: '#333',
     marginBottom: 8,
   },
-  alertButton: {
-    backgroundColor: '#4369A3',
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    borderRadius: 4,
-    alignSelf: 'flex-start'
-  },
-  alertButtonText: {
-    color: '#fff',
-    fontSize: 13,
-    fontWeight: 'bold',
-  }
 });
 
 export default styles;
