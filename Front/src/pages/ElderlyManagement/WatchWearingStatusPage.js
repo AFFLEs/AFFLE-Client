@@ -5,21 +5,11 @@ import SearchInput from '../../components/SearchInput';
 import Card from '../../components/Card';
 
 const dummyData = [
-  {
-    name: '박신영', gender: '여성', age: 92, status: '미착용', lastWorn: '3일 전'
-  },
-  {
-    name: '김기민', gender: '남성', age: 74, status: '충전중', lastWorn: '오늘'
-  },
-  {
-    name: '고길동', gender: '남성', age: 80, status: '착용', lastWorn: '오늘'
-  },
-  {
-    name: '이순자', gender: '여성', age: 77, status: '충전중', lastWorn: '1일 전'
-  },
-  {
-    name: '박영신', gender: '여성', age: 92, status: '착용', lastWorn: '오늘'
-  }
+  { name: '박신영', gender: '여성', age: 92, status: '미착용', lastWorn: '3일 전' },
+  { name: '김기민', gender: '남성', age: 74, status: '충전중', lastWorn: '오늘' },
+  { name: '고길동', gender: '남성', age: 80, status: '착용', lastWorn: '오늘' },
+  { name: '이순자', gender: '여성', age: 77, status: '충전중', lastWorn: '1일 전' },
+  { name: '박영신', gender: '여성', age: 92, status: '착용', lastWorn: '오늘' },
 ];
 
 const WatchWearingStatus = () => {
@@ -30,7 +20,8 @@ const WatchWearingStatus = () => {
     elder.name.includes(searchKeyword) && elder.status === selectedStatus
   );
 
-  const getStatusCount = (type) => dummyData.filter(elder => elder.status === type).length;
+  const getStatusCount = (type) =>
+    dummyData.filter(elder => elder.status === type).length;
 
   return (
     <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
@@ -41,6 +32,7 @@ const WatchWearingStatus = () => {
             value={searchKeyword}
             onChangeText={setSearchKeyword}
             placeholder="검색어 입력"
+            style={styles.searchInputTop}
           />
         </View>
 
@@ -70,17 +62,20 @@ const WatchWearingStatus = () => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.elderlyList}>
+        {selectedStatus === '미착용' && (
+          <View style={styles.alertButtonWrapper}>
+            <TouchableOpacity style={styles.alertButtonGlobal}>
+              <Text style={styles.alertButtonText}>착용 권장 알림 전송</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
+        <View style={styles.elderlyListGrid}>
           {filteredList.map((elder, idx) => (
             <View key={idx} style={styles.elderCard}>
               <Text style={styles.elderName}>{elder.name}</Text>
               <Text style={styles.elderSub}>{elder.gender} | {elder.age}세</Text>
               <Text style={styles.elderDetail}>마지막 착용 일자 : {elder.lastWorn}</Text>
-              {elder.status === '미착용' && (
-                <TouchableOpacity style={styles.alertButton}>
-                  <Text style={styles.alertButtonText}>착용 권장 알림 전송</Text>
-                </TouchableOpacity>
-              )}
             </View>
           ))}
         </View>
