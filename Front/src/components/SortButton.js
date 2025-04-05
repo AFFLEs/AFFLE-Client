@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
 
 const SortButton = ({ selectedOption, onSelect }) => {
   const [open, setOpen] = React.useState(false);
+
   const options = [
     { key: 'recentVisit', label: '최신 방문순' },
     { key: 'name', label: '이름순' },
@@ -14,10 +14,15 @@ const SortButton = ({ selectedOption, onSelect }) => {
 
   return (
     <View style={styles.wrapper}>
-      <TouchableOpacity style={styles.button} onPress={() => setOpen(!open)}>
-        <Feather name="chevron-down" size={16} color="#000" style={{ marginRight: 4 }} />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => setOpen(prev => !prev)}
+        activeOpacity={0.8}
+      >
+        <Text style={styles.arrow}>▼</Text>
         <Text style={styles.text}>{selectedLabel}</Text>
       </TouchableOpacity>
+
       {open && (
         <View style={styles.dropdown}>
           {options.map(option => (
@@ -46,18 +51,18 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#999',
-    borderRadius: 8,
+    borderRadius: 16,
     paddingHorizontal: 12,
-    paddingVertical: 6,
-    height: 36,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 3,
-    elevation: 1,
+    height: 40,
+    width: 160,
+  },
+  arrow: {
+    fontSize: 14,
+    marginRight: 6,
   },
   text: {
     fontSize: 14,
@@ -65,7 +70,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     position: 'absolute',
-    top: 44,
+    top: 48,
     right: 0,
     backgroundColor: '#fff',
     borderWidth: 1,
