@@ -46,6 +46,8 @@ const SortButton = ({ selectedOption, onSelect }) => {
 const styles = StyleSheet.create({
   wrapper: {
     position: 'relative',
+    overflow: 'visible',
+    zIndex: 3,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
-    zIndex: 10,
+    zIndex: 9999,
   },
   option: {
     paddingVertical: 10,

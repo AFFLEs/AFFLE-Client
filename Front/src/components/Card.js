@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginVertical: 10,
         shadowColor: '#000',
+         overflow: 'visible',
     },
     header: {
         flexDirection: 'row',
