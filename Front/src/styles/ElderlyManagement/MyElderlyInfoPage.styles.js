@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#F4F6FA',
   },
+  text: {
+    position: 'absolute'
+  },
   titleRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',

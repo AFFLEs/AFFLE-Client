@@ -88,14 +88,14 @@ const MyElderlyInfoPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Card>
-        <View style={styles.titleRow}>
-          <Text style={styles.cardTitle}>👤 내 담당 노인 정보 조회</Text>
+      <Card title="👤 내 담당 노인 정보 조회">
+        <View style={styles.text}>
           <View style={styles.searchSortRow}>
             <SearchInput
               value={searchKeyword}
               onChangeText={setSearchKeyword}
               placeholder="담당자명 입력"
+              itsme='MyInfo'
             />
             <SortButton
               selectedOption={sortOption}

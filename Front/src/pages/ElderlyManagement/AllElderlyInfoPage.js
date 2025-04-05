@@ -60,15 +60,13 @@ const AllElderlyInfoPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Card>
-        <View style={styles.titleRow}>
-          <Text style={styles.cardTitle}>🗂 담당자별 방문 노인 분담표</Text>
+      <Card title="🗂 담당자별 방문 노인 분담표">
           <SearchInput
             value={searchKeyword}
             onChangeText={setSearchKeyword}
             placeholder="담당자명 입력"
+            itsme="Allinfo"
           />
-        </View>
 
         <View style={styles.grid}>
           {filteredData.map((group, idx) => (

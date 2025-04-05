@@ -41,6 +41,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 
+    grid: {
+      flexWrap: 'wrap',
+      justifyContent: 'flex-start',
+      padding: 28,
+    },
+
   red: {
     backgroundColor: '#E55733',
   },
@@ -91,12 +97,12 @@ const styles = StyleSheet.create({
   elderlyListGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     gap: 12,
   },
 
   elderCard: {
-    width: '48%',
+    width: '49%',
     padding: 12,
     borderWidth: 1,
     borderColor: '#ddd',

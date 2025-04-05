@@ -25,60 +25,62 @@ const WatchWearingStatus = () => {
 
   return (
     <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
-      <Card>
-        <View style={styles.titleRow}>
-          <Text style={styles.title}>⌚ 위치 착용 현황 및 관리</Text>
+      <Card title="⌚ 위치 착용 현황 및 관리">
           <SearchInput
             value={searchKeyword}
             onChangeText={setSearchKeyword}
             placeholder="검색어 입력"
             style={styles.searchInputTop}
+            itsme="Allinfo"
           />
-        </View>
 
+        <View style={styles.grid}>
         <View style={styles.statusTabs}>
-          <TouchableOpacity
-            style={[styles.tab, styles.red, selectedStatus === '미착용' && styles.selected]}
-            onPress={() => setSelectedStatus('미착용')}
-          >
-            <Text style={styles.tabText}>미착용</Text>
-            <Text style={styles.tabCount}>{getStatusCount('미착용')}명</Text>
-          </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.tab, styles.red, selectedStatus === '미착용' && styles.selected]}
+                    onPress={() => setSelectedStatus('미착용')}
+                  >
+                    <Text style={styles.tabText}>미착용</Text>
+                    <Text style={styles.tabCount}>{getStatusCount('미착용')}명</Text>
+                  </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.tab, styles.yellow, selectedStatus === '충전중' && styles.selected]}
-            onPress={() => setSelectedStatus('충전중')}
-          >
-            <Text style={styles.tabText}>충전 중</Text>
-            <Text style={styles.tabCount}>{getStatusCount('충전중')}명</Text>
-          </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.tab, styles.yellow, selectedStatus === '충전중' && styles.selected]}
+                    onPress={() => setSelectedStatus('충전중')}
+                  >
+                    <Text style={styles.tabText}>충전 중</Text>
+                    <Text style={styles.tabCount}>{getStatusCount('충전중')}명</Text>
+                  </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.tab, styles.green, selectedStatus === '착용' && styles.selected]}
-            onPress={() => setSelectedStatus('착용')}
-          >
-            <Text style={styles.tabText}>착용</Text>
-            <Text style={styles.tabCount}>{getStatusCount('착용')}명</Text>
-          </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.tab, styles.green, selectedStatus === '착용' && styles.selected]}
+                    onPress={() => setSelectedStatus('착용')}
+                  >
+                    <Text style={styles.tabText}>착용</Text>
+                    <Text style={styles.tabCount}>{getStatusCount('착용')}명</Text>
+                  </TouchableOpacity>
+                </View>
+
+                {selectedStatus === '미착용' && (
+                  <View style={styles.alertButtonWrapper}>
+                    <TouchableOpacity style={styles.alertButtonGlobal}>
+                      <Text style={styles.alertButtonText}>착용 권장 알림 전송</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+
+                <View style={styles.elderlyListGrid}>
+                  {filteredList.map((elder, idx) => (
+                    <View key={idx} style={styles.elderCard}>
+                      <Text style={styles.elderName}>{elder.name}</Text>
+                      <Text style={styles.elderSub}>{elder.gender} | {elder.age}세</Text>
+                      <Text style={styles.elderDetail}>마지막 착용 일자 : {elder.lastWorn}</Text>
+                    </View>
+                  ))}
+                </View>
         </View>
 
-        {selectedStatus === '미착용' && (
-          <View style={styles.alertButtonWrapper}>
-            <TouchableOpacity style={styles.alertButtonGlobal}>
-              <Text style={styles.alertButtonText}>착용 권장 알림 전송</Text>
-            </TouchableOpacity>
-          </View>
-        )}
 
-        <View style={styles.elderlyListGrid}>
-          {filteredList.map((elder, idx) => (
-            <View key={idx} style={styles.elderCard}>
-              <Text style={styles.elderName}>{elder.name}</Text>
-              <Text style={styles.elderSub}>{elder.gender} | {elder.age}세</Text>
-              <Text style={styles.elderDetail}>마지막 착용 일자 : {elder.lastWorn}</Text>
-            </View>
-          ))}
-        </View>
       </Card>
     </ScrollView>
   );

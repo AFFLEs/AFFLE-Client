@@ -46,7 +46,10 @@ const SortButton = ({ selectedOption, onSelect }) => {
 const styles = StyleSheet.create({
   wrapper: {
     position: 'relative',
-    marginLeft: 12,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    transform: [{ translateX: -30 }, { translateY: -30 }],
   },
   button: {
     flexDirection: 'row',
