@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, View, Alert} from "react-native";
+import {Text, TouchableOpacity, View, Alert, ScrollView} from "react-native";
 import styles from '../../styles/SystemManage/ListPage.styles';
 import Card from "../../components/Card";
 import MeterReaderNoticeListCard from "../../components/MeterReaderNoticeListCard";
@@ -18,6 +18,86 @@ const NoticeManagePage = () => {
         },
         {
             id: '2',
+            title: '[필독] 금일 근무 검침원 확인 바람',
+            content: '금일 근무하시는 분들의...',
+            author: '박총괄',
+            date: '2024.12.16 (월)',
+            attachment: '-',
+        },
+        {
+            id: '3',
+            title: '[필독] 금일 근무 검침원 확인 바람',
+            content: '금일 근무하시는 분들의...',
+            author: '박총괄',
+            date: '2024.12.16 (월)',
+            attachment: '-',
+        },
+        {
+            id: '4',
+            title: '[필독] 금일 근무 검침원 확인 바람',
+            content: '금일 근무하시는 분들의...',
+            author: '박총괄',
+            date: '2024.12.16 (월)',
+            attachment: '-',
+        },
+        {
+            id: '5',
+            title: '[필독] 금일 근무 검침원 확인 바람',
+            content: '금일 근무하시는 분들의...',
+            author: '박총괄',
+            date: '2024.12.16 (월)',
+            attachment: '-',
+        },
+        {
+            id: '6',
+            title: '[필독] 금일 근무 검침원 확인 바람',
+            content: '금일 근무하시는 분들의...',
+            author: '박총괄',
+            date: '2024.12.16 (월)',
+            attachment: '-',
+        },
+        {
+            id: '7',
+            title: '[필독] 금일 근무 검침원 확인 바람',
+            content: '금일 근무하시는 분들의...',
+            author: '박총괄',
+            date: '2024.12.16 (월)',
+            attachment: '-',
+        },
+        {
+            id: '8',
+            title: '[필독] 금일 근무 검침원 확인 바람',
+            content: '금일 근무하시는 분들의...',
+            author: '박총괄',
+            date: '2024.12.16 (월)',
+            attachment: '-',
+        },
+        {
+            id: '9',
+            title: '[필독] 금일 근무 검침원 확인 바람',
+            content: '금일 근무하시는 분들의...',
+            author: '박총괄',
+            date: '2024.12.16 (월)',
+            attachment: '-',
+        },
+        {
+            id: '10',
+            title: '[필독] 금일 근무 검침원 확인 바람',
+            content: '금일 근무하시는 분들의...',
+            author: '박총괄',
+            date: '2024.12.16 (월)',
+            attachment: '-',
+        },
+        {
+            id: '11',
+            title: '[필독] 금일 근무 검침원 확인 바람',
+            content: '금일 근무하시는 분들의...',
+            author: '박총괄',
+            date: '2024.12.16 (월)',
+            attachment: '-',
+        },
+        {
+            id: '12',
             title: '[필독] 금일 근무 검침원 확인 바람',
             content: '금일 근무하시는 분들의...',
             author: '박총괄',
@@ -64,7 +144,7 @@ const NoticeManagePage = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, styles.contentContainer]}>
             {/* 공지사항 조회 */}
             <View style={styles.leftCards}>
                 <Card title="📢 검침원 공지사항">
@@ -72,6 +152,7 @@ const NoticeManagePage = () => {
                         notices={notices}
                         onSelectNotice={handleSelectNotice}
                     />
+
                     <TouchableOpacity style={styles.Button} onPress={handleRegister}>
                         <Text style={styles.ButtonText}>등록하기</Text>
                     </TouchableOpacity>

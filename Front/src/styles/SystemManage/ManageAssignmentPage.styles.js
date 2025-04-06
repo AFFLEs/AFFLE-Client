@@ -43,10 +43,16 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         backgroundColor: '#f5f5f5',
     },
+    tableBodyScroll: {
+        maxHeight: 400,
+    },
+    tableBody: {
+    },
     headerCell: {
         flex: 1,
         fontWeight: 'bold',
         textAlign: 'center',
+        marginLeft: 50
     },
     tableRow: {
         flexDirection: 'row',
@@ -55,20 +61,17 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.5,
         borderColor: '#eee',
     },
-    // 공통 셀: 수직/수평 모두 중앙 정렬 (기본 한 줄 텍스트)
     rowCell: {
         flex: 1,
         textAlign: 'center',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    // 마지막 열: 배정 현황과 수정 버튼을 가로 배치
     assignCell: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        // 수직으로 중간 정렬, 가로로 좌우 배치
         paddingHorizontal: 8,
     },
     assignText: {

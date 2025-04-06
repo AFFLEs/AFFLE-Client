@@ -45,16 +45,17 @@ export default function MainDrawerNavigator() {
             <Drawer.Screen name="Dashboard" component={DashBoardPageNormal} />
 
             <Drawer.Screen name="SOSCall" component={SOSCallPage} />
-            
+
             {/* 낙상 발생 현황 및 조치 */}
             <Drawer.Screen name="FallOccurrence" component={FallOccurrence} />
-              
+
             {/* 위험 구역 출입 관리 */}
             <Drawer.Screen name="EnterDangerZone" component={EnterDangerZone} />
-              
+
             {/* 온열 발생 현황 및 조치 */}
             <Drawer.Screen name="HeatExhaustionOccurence" component={HeatExhaustionOccurence} />
-              
+
+            {/* 시스템 관리 */}
             <Drawer.Screen name="MeterReaderList" component={MeterReaderListPage} />
             <Drawer.Screen name="ElderlyList" component={ElderlyListPage} />
             <Drawer.Screen name="ManageAssignment" component={ManageAssignmentPage} />

@@ -27,20 +27,29 @@ const MeterReaderNoticeListCard = ({ notices, onSelectNotice }) => {
     );
 
     return (
-        <FlatList
-            data={notices}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            ListHeaderComponent={renderHeader}
-            style={styles.list}
-            contentContainerStyle={styles.container}
-        />
+        <View style={{ maxHeight: 500 }}>
+            {/* 헤더를 FlatList 바깥에서 고정 */}
+            <View style={styles.header}>
+                <Text style={[styles.headerText, { flex: 0.5 }]}>연번</Text>
+                <Text style={[styles.headerText, { flex: 2 }]}>내용</Text>
+                <Text style={[styles.headerText, { flex: 1 }]}>작성자</Text>
+                <Text style={[styles.headerText, { flex: 1.5 }]}>등록 일시</Text>
+            </View>
+
+            {/* FlatList는 그 아래만 스크롤 */}
+            <FlatList
+                data={notices}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id}
+                style={{ maxHeight: 460 }} // header 제외한 영역
+                contentContainerStyle={styles.container}
+            />
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        marginVertical: 15,
     },
     header: {
         flexDirection: 'row',
@@ -55,7 +64,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     list: {
-        maxHeight: 200,
+        maxHeight: 500,
     },
     row: {
         flexDirection: 'row',

@@ -137,6 +137,216 @@ const MeterReaderListPage = () => {
                 },
             ],
         },
+        {
+            manager_id: 4,
+            name: '김민기',
+            gender: '남성',
+            age: 74,
+            work_status: 0,
+            work_region: '애월읍 애월리',
+            work_time: '평일 10:00 ~ 17:00',
+            contact: '010-1234-1234',
+            device: '0123444',
+            address: '제주특별자치도 제주시 애월읍 곽지11길 27',
+            subject: [
+                {
+                    elderly_id: 0,
+                    name: '김기민',
+                    gender: '남성',
+                    age: 74,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+                {
+                    elderly_id: 1,
+                    name: '김민지',
+                    gender: '여성',
+                    age: 87,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+            ],
+        },
+        {
+            manager_id: 5,
+            name: '김민기',
+            gender: '남성',
+            age: 74,
+            work_status: 0,
+            work_region: '애월읍 애월리',
+            work_time: '평일 10:00 ~ 17:00',
+            contact: '010-1234-1234',
+            device: '0123444',
+            address: '제주특별자치도 제주시 애월읍 곽지11길 27',
+            subject: [
+                {
+                    elderly_id: 0,
+                    name: '김기민',
+                    gender: '남성',
+                    age: 74,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+                {
+                    elderly_id: 1,
+                    name: '김민지',
+                    gender: '여성',
+                    age: 87,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+            ],
+        },
+        {
+            manager_id: 6,
+            name: '김민기',
+            gender: '남성',
+            age: 74,
+            work_status: 0,
+            work_region: '애월읍 애월리',
+            work_time: '평일 10:00 ~ 17:00',
+            contact: '010-1234-1234',
+            device: '0123444',
+            address: '제주특별자치도 제주시 애월읍 곽지11길 27',
+            subject: [
+                {
+                    elderly_id: 0,
+                    name: '김기민',
+                    gender: '남성',
+                    age: 74,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+                {
+                    elderly_id: 1,
+                    name: '김민지',
+                    gender: '여성',
+                    age: 87,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+            ],
+        },
+        {
+            manager_id: 7,
+            name: '김민기',
+            gender: '남성',
+            age: 74,
+            work_status: 0,
+            work_region: '애월읍 애월리',
+            work_time: '평일 10:00 ~ 17:00',
+            contact: '010-1234-1234',
+            device: '0123444',
+            address: '제주특별자치도 제주시 애월읍 곽지11길 27',
+            subject: [
+                {
+                    elderly_id: 0,
+                    name: '김기민',
+                    gender: '남성',
+                    age: 74,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+                {
+                    elderly_id: 1,
+                    name: '김민지',
+                    gender: '여성',
+                    age: 87,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+            ],
+        },
+        {
+            manager_id: 8,
+            name: '김민기',
+            gender: '남성',
+            age: 74,
+            work_status: 0,
+            work_region: '애월읍 애월리',
+            work_time: '평일 10:00 ~ 17:00',
+            contact: '010-1234-1234',
+            device: '0123444',
+            address: '제주특별자치도 제주시 애월읍 곽지11길 27',
+            subject: [
+                {
+                    elderly_id: 0,
+                    name: '김기민',
+                    gender: '남성',
+                    age: 74,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+                {
+                    elderly_id: 1,
+                    name: '김민지',
+                    gender: '여성',
+                    age: 87,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+            ],
+        },
+        {
+            manager_id: 9,
+            name: '김민기',
+            gender: '남성',
+            age: 74,
+            work_status: 0,
+            work_region: '애월읍 애월리',
+            work_time: '평일 10:00 ~ 17:00',
+            contact: '010-1234-1234',
+            device: '0123444',
+            address: '제주특별자치도 제주시 애월읍 곽지11길 27',
+            subject: [
+                {
+                    elderly_id: 0,
+                    name: '김기민',
+                    gender: '남성',
+                    age: 74,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+                {
+                    elderly_id: 1,
+                    name: '김민지',
+                    gender: '여성',
+                    age: 87,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+            ],
+        },
+        {
+            manager_id: 10,
+            name: '김민기',
+            gender: '남성',
+            age: 74,
+            work_status: 0,
+            work_region: '애월읍 애월리',
+            work_time: '평일 10:00 ~ 17:00',
+            contact: '010-1234-1234',
+            device: '0123444',
+            address: '제주특별자치도 제주시 애월읍 곽지11길 27',
+            subject: [
+                {
+                    elderly_id: 0,
+                    name: '김기민',
+                    gender: '남성',
+                    age: 74,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+                {
+                    elderly_id: 1,
+                    name: '김민지',
+                    gender: '여성',
+                    age: 87,
+                    recent_visit_date: '24.10.24',
+                    region: '애월읍 애월리',
+                },
+            ],
+        },
     ];
     const [selectedId, setSelectedId] = useState(0);
     const [isRegistering, setIsRegistering] = useState(false);
@@ -149,6 +359,7 @@ const MeterReaderListPage = () => {
 
     const handlePress = (id) => {
         setSelectedId(id);
+        setIsRegistering(false);
     };
 
     const fetchMeterReaderList = async () => {
@@ -209,23 +420,21 @@ const MeterReaderListPage = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             {/* 검침원 목록 */}
             <View style={styles.leftCards}>
                 <Card
                     title="💼 검침원 목록"
                 >
-                    <ScrollView>
-                        <View style={styles.list}>
-                            {managerInfoList.map((manager, index) => (
-                                <MeterReaderListCard
-                                    key={manager.manager_id}
-                                    manager = {manager}
-                                    selected={selectedId === manager.manager_id}
-                                    onPress={() => handlePress(manager.manager_id)}
-                                />
-                            ))}
-                        </View>
+                    <ScrollView style={{ maxHeight: 500 }} contentContainerStyle={styles.list}>
+                        {managerInfoList.map((manager, index) => (
+                            <MeterReaderListCard
+                                key={manager.manager_id}
+                                manager = {manager}
+                                selected={selectedId === manager.manager_id}
+                                onPress={() => handlePress(manager.manager_id)}
+                            />
+                        ))}
                     </ScrollView>
 
                     <TouchableOpacity style={styles.Button}>
@@ -258,7 +467,7 @@ const MeterReaderListPage = () => {
                 </Card>
             </View>
 
-        </View>
+        </ScrollView>
     );
 };
 
