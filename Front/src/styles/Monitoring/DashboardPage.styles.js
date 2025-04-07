@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
     },
     listItem: {
-        width: 330, // 카드의 넓이를 고정 (필요한 크기로 조정 가능)
         marginRight: 5,
     },
     arrowButton: {
